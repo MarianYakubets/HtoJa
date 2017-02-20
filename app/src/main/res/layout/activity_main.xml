@@ -8,10 +8,20 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorPrimary"
     tools:context="com.htoja.mifik.htoja.MainActivity">
 
-    <TextView
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:gravity="center"
+        android:text="Single"
+        android:textSize="17pt"
+        android:textStyle="bold"
+        android:width="180dp"
+        android:height="100dp"
+        android:id="@+id/button3"
+        android:enabled="true" />
 </RelativeLayout>
