@@ -1,5 +1,6 @@
 package com.htoja.mifik.htoja;
 
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -24,10 +25,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class GameActivity extends AppCompatActivity  implements SensorEventListener {
+public class GameActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager mSensorManager;
-    private Sensor mLight;
+    private Sensor mRotationSensor;
+
+    private static final int SENSOR_DELAY = 500 * 1000; // 500ms
+    private static final int FROM_RADS_TO_DEGS = -57;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -79,9 +84,13 @@ public class GameActivity extends AppCompatActivity  implements SensorEventListe
                         .setAction("Action", null).show();
             }
         });
-
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        try {
+            mSensorManager = (SensorManager) getSystemService(Activity.SENSOR_SERVICE);
+            mRotationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+            mSensorManager.registerListener(this, mRotationSensor, SENSOR_DELAY);
+        } catch (Exception e) {
+            Toast.makeText(this, "Hardware compatibility issue", Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -113,17 +122,37 @@ public class GameActivity extends AppCompatActivity  implements SensorEventListe
     }
 
     @Override
-    public final void onSensorChanged(SensorEvent event) {
-        // The light sensor returns a single value.
-        // Many sensors return 3 values, one for each axis.
-        float lux = event.values[0];
-        // Do something with this sensor value.
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor == mRotationSensor) {
+            if (event.values.length > 4) {
+                float[] truncatedRotationVector = new float[4];
+                System.arraycopy(event.values, 0, truncatedRotationVector, 0, 4);
+                update(truncatedRotationVector);
+            } else {
+                update(event.values);
+            }
+        }
+    }
+
+    private void update(float[] vectors) {
+        float[] rotationMatrix = new float[9];
+        SensorManager.getRotationMatrixFromVector(rotationMatrix, vectors);
+        int worldAxisX = SensorManager.AXIS_X;
+        int worldAxisZ = SensorManager.AXIS_Z;
+        float[] adjustedRotationMatrix = new float[9];
+        SensorManager.remapCoordinateSystem(rotationMatrix, worldAxisX, worldAxisZ, adjustedRotationMatrix);
+        float[] orientation = new float[3];
+        SensorManager.getOrientation(adjustedRotationMatrix, orientation);
+        float pitch = orientation[1] * FROM_RADS_TO_DEGS;
+        float roll = orientation[2] * FROM_RADS_TO_DEGS;
+        Toast.makeText(this, "Pitch: " + pitch, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mRotationSensor, SENSOR_DELAY);
+
     }
 
     @Override
