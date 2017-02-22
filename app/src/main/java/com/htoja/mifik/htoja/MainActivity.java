@@ -1,5 +1,6 @@
 package com.htoja.mifik.htoja;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,5 +18,10 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+    public void startSingle(View view) {
+        Intent i = new Intent(getApplicationContext(), GameActivity.class);
+        startActivity(i);
     }
 }
