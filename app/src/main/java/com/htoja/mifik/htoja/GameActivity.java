@@ -48,6 +48,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+     /*   mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -73,17 +74,19 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 return true;
             }
-        });
+        });*/
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
+        textView = (TextView) findViewById(R.id.section_label);
+
         try {
             mSensorManager = (SensorManager) getSystemService(Activity.SENSOR_SERVICE);
             mRotationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
@@ -145,20 +148,19 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         SensorManager.getOrientation(adjustedRotationMatrix, orientation);
         float pitch = orientation[1] * FROM_RADS_TO_DEGS;
         float roll = orientation[2] * FROM_RADS_TO_DEGS;
-        Toast.makeText(this, "Pitch: " + pitch, Toast.LENGTH_SHORT).show();
+        float yaw = orientation[0] * FROM_RADS_TO_DEGS;
+        textView.setText("pitch : " + pitch + ",\nroll : " + roll + ",\nyaw : " + yaw);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mRotationSensor, SENSOR_DELAY);
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mSensorManager.unregisterListener(this);
     }
 
     /**

@@ -35,6 +35,6 @@
         android:text="@string/multiple"
         android:background="@drawable/buttonshape"
         android:textSize="16pt"
-        android:id="@+id/btMltiple"
+        android:id="@+id/btMultiple"
         android:enabled="true" />
 </RelativeLayout>
