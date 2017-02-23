@@ -49,6 +49,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
      */
     private ViewPager mViewPager;
     private TextView textView;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,6 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         try {
             mSensorManager = (SensorManager) getSystemService(Activity.SENSOR_SERVICE);
             mRotationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-            mSensorManager.registerListener(this, mRotationSensor, SENSOR_DELAY);
         } catch (Exception e) {
             Toast.makeText(this, "Hardware compatibility issue", Toast.LENGTH_LONG).show();
         }
@@ -127,7 +127,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor == mRotationSensor) {
-            if (event.values.length > 4) {
+            if (event.values.length > 5) {
                 float[] truncatedRotationVector = new float[4];
                 System.arraycopy(event.values, 0, truncatedRotationVector, 0, 4);
                 update(truncatedRotationVector);
@@ -147,20 +147,36 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         float[] orientation = new float[3];
         SensorManager.getOrientation(adjustedRotationMatrix, orientation);
         float pitch = orientation[1] * FROM_RADS_TO_DEGS;
-        float roll = orientation[2] * FROM_RADS_TO_DEGS;
-        float yaw = orientation[0] * FROM_RADS_TO_DEGS;
+        float roll = orientation[0] * FROM_RADS_TO_DEGS;
+        float yaw = orientation[2] * FROM_RADS_TO_DEGS;
+        float diff = Math.abs(yaw) - 15f;
+        if (diff > 80 && diff < 100) {
+            if (Math.abs(pitch) > 30) {
+                showAToast("Turn : " + Math.abs(pitch));
+            }
+        }
+
         textView.setText("pitch : " + pitch + ",\nroll : " + roll + ",\nyaw : " + yaw);
+    }
+
+    public void showAToast (String message){
+        if (toast != null) {
+            toast.cancel();
+        }
+        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+        mSensorManager.registerListener(this, mRotationSensor, SENSOR_DELAY);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        mSensorManager.unregisterListener(this);
     }
 
     /**
