@@ -149,17 +149,25 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         float pitch = orientation[1] * FROM_RADS_TO_DEGS;
         float roll = orientation[0] * FROM_RADS_TO_DEGS;
         float yaw = orientation[2] * FROM_RADS_TO_DEGS;
-        float diff = Math.abs(yaw) - 15f;
-        if (diff > 80 && diff < 100) {
-            if (Math.abs(pitch) > 30) {
-                showAToast("Turn : " + Math.abs(pitch));
+
+        textView.setText("pitch : " + pitch + ",\nroll : " + roll + ",\nyaw : " + yaw);
+
+        if (yaw > 0) {
+            if (yaw < 98 && yaw > 82) {
+                textView.setText("good pitch : " + pitch + ",\nroll : " + roll + ",\nyaw : " + yaw);
+
+
+            }
+        } else {
+            if (yaw > -98 && yaw < -82) {
+                textView.setText("good pitch : " + pitch + ",\nroll : " + roll + ",\nyaw : " + yaw);
+
             }
         }
 
-        textView.setText("pitch : " + pitch + ",\nroll : " + roll + ",\nyaw : " + yaw);
     }
 
-    public void showAToast (String message){
+    public void showAToast(String message) {
         if (toast != null) {
             toast.cancel();
         }
