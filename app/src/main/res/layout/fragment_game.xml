@@ -9,7 +9,7 @@
     tools:context="com.htoja.mifik.htoja.GameActivity$PlaceholderFragment">
 
     <TextView
-        android:id="@+id/section_label"
+        android:id="@+id/tvWord"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
