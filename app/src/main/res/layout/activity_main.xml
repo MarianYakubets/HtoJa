@@ -36,5 +36,6 @@
         android:background="@drawable/buttonshape"
         android:textSize="16pt"
         android:id="@+id/btMultiple"
+        android:onClick="startTeams"
         android:enabled="true" />
 </RelativeLayout>
