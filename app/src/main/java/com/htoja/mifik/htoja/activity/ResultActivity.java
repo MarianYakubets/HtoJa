@@ -28,19 +28,9 @@ public class ResultActivity extends AppCompatActivity {
         ArrayList<String> correct = bundle.getStringArrayList(GameActivity.CORRECT);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Correct: ");
-        if (correct != null) {
-            for (String word : correct) {
-                sb.append(word);
-                sb.append(", ");
-            }
-        }
-        sb.append("\nSkip: ");
-        if (skip != null) {
-            for (String word : skip) {
-                sb.append(word);
-                sb.append(", ");
-            }
+        sb.append("Результат: ");
+        if (correct != null && skip != null) {
+            sb.append(correct.size() - skip.size());
         }
         TextView resultView = (TextView) findViewById(R.id.tvResult);
         resultView.setText(sb.toString());

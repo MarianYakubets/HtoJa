@@ -15,37 +15,49 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:textColor="@android:color/white"
         android:text="word"
+        android:textColor="@android:color/white"
         android:textSize="21pt" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <FrameLayout
             android:id="@+id/flYes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:alpha=".1"
             android:background="@android:color/white"
-            android:layout_weight="1"
             android:clickable="true"
-            android:onClick="clickYes" />
+            android:onClick="clickYes">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@android:drawable/checkbox_on_background" />
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/flNo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:alpha=".1"
             android:background="@android:color/black"
-            android:layout_weight="1"
             android:clickable="true"
-            android:onClick="clickNo" >
+            android:onClick="clickNo">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_delete" />
         </FrameLayout>
     </LinearLayout>
 
@@ -53,17 +65,17 @@
         android:id="@+id/tvTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_01_00"
-        android:textColor="@android:color/white"
-        android:layout_gravity ="end|top"
-        android:gravity ="end|top"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/tvWord"
+        android:layout_gravity="end|top"
+        android:gravity="end|top"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
-        android:textSize="14pt"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/tvWord" />
+        android:text="@string/_01_00"
+        android:textColor="@android:color/white"
+        android:textSize="14pt" />
 
 </RelativeLayout>
