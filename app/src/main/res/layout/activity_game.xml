@@ -17,7 +17,7 @@
         android:gravity="center"
         android:text="word"
         android:textColor="@android:color/white"
-        android:textSize="21pt" />
+        android:textSize="23pt" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -11,7 +11,10 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="100dp"/>
 
     <Button style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
@@ -20,9 +23,9 @@
         android:layout_gravity ="end|bottom"
         android:text="@string/next"
         android:background="@drawable/buttonshape"
-        android:textSize="16pt"
+        android:textSize="14pt"
         android:id="@+id/btNext"
-        android:onClick="clickNext"
+        android:onClick="clickPlay"
         android:enabled="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -38,9 +41,8 @@
         android:onClick="clickAdd"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="12dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="12dp" />
+        android:layout_above="@+id/btNext"
+        android:layout_toEndOf="@+id/btNext"
+        android:layout_marginStart="14dp" />
 
 </RelativeLayout>

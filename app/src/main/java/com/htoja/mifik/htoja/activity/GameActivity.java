@@ -83,7 +83,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void endRound() {
-        Intent i = new Intent(getApplicationContext(), ResultActivity.class);
+        Intent i = new Intent(getApplicationContext(), RoundActivity.class);
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(CORRECT, correct);
         bundle.putStringArrayList(SKIP, skip);

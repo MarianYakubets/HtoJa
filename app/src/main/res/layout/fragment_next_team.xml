@@ -1,0 +1,40 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btPlay"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="17dp"
+            android:background="@drawable/buttonshape"
+            android:enabled="true"
+            android:gravity="center"
+            android:onClick="clickPlay"
+            android:text="@string/single"
+            android:textSize="14pt" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="word"
+            android:textColor="@android:color/white"
+            android:textSize="16pt"
+            android:layout_centerInParent="true"
+            android:layout_above="@+id/btNext"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+</FrameLayout>

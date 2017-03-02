@@ -1,5 +1,7 @@
 package com.htoja.mifik.htoja.utils;
 
+import com.htoja.mifik.htoja.control.TeamGameManager;
+
 /**
  * Created by mi on 3/2/2017.
  */
@@ -8,10 +10,8 @@ public class Storage {
 
 
     public static void saveCurrentTeamState(){
-        AppStateHolder.getInstance().getCurrentSet();
     }
 
     public static void restoreCurrentTeamState(){
-        AppStateHolder.getInstance().getCurrentSet();
     }
 }

@@ -8,14 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.control.TeamGameManager;
+import com.htoja.mifik.htoja.data.TeamsSet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class TeamsActivity extends AppCompatActivity {
@@ -37,7 +40,7 @@ public class TeamsActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.list);
 
-        adapter = new ListAdapter(TeamsActivity.this, R.layout.team_item,  new ArrayList<String>());
+        adapter = new ListAdapter(TeamsActivity.this, R.layout.team_item, new ArrayList<String>());
         listView.setAdapter(adapter);
 
         clickAdd(null);
@@ -48,12 +51,13 @@ public class TeamsActivity extends AppCompatActivity {
         adapter.add("КОМАНДА " + (adapter.getCount() + 1));
     }
 
-    public void clickNext(View view) {
+    public void clickPlay(View view) {
+        TeamGameManager.getInstance().startNewSet(adapter.getData());
         Intent i = new Intent(getApplicationContext(), GameActivity.class);
         startActivity(i);
     }
 
-    private class ListAdapter extends ArrayAdapter<String>{
+    private class ListAdapter extends ArrayAdapter<String> {
         private final List<String> data;
         private final Context context;
 
@@ -61,6 +65,10 @@ public class TeamsActivity extends AppCompatActivity {
             super(context, resource, data);
             this.data = data;
             this.context = context;
+        }
+
+        public List<String> getData() {
+            return data;
         }
 
         @Override
@@ -83,8 +91,10 @@ public class TeamsActivity extends AppCompatActivity {
             viewHolder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    data.remove(position);
-                    notifyDataSetChanged();
+                    if (data.size() > 2) {
+                        data.remove(position);
+                        notifyDataSetChanged();
+                    }
                 }
             });
 
@@ -96,7 +106,6 @@ public class TeamsActivity extends AppCompatActivity {
             ImageButton button;
         }
     }
-
 
 
 }
