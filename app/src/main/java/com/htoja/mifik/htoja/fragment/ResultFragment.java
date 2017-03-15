@@ -32,13 +32,17 @@ public class ResultFragment extends Fragment {
         ArrayList<String> correct = bundle.getStringArrayList(GameActivity.CORRECT);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Результат: " +  TeamGameManager.getInstance().getCurrentTeam());
-        if (correct != null && skip != null) {
-            sb.append(correct.size() - skip.size());
-        }
+        sb.append("Кінець раунду: \n" + TeamGameManager.getInstance().getCurrentTeam());
+
         TeamGameManager.getInstance().addCurrentTeamPoints(correct.size() - skip.size());
-        TextView resultView = (TextView) view.findViewById(R.id.tvResult);
-        resultView.setText(sb.toString());
+        TextView tvName = (TextView) view.findViewById(R.id.tvName);
+        TextView tvResult = (TextView) view.findViewById(R.id.tvResult);
+        tvName.setText(sb.toString());
+
+        if (correct != null && skip != null) {
+            tvResult.setText(String.valueOf(correct.size() - skip.size()) + "\n БАЛІВ");
+        }
+
         super.onViewCreated(view, savedInstanceState);
 
     }

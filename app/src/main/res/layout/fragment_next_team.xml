@@ -4,37 +4,70 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/viewA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:dividerHeight="5dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:orientation="vertical">
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            app:layout_anchorGravity="top|center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="TEAM"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:textSize="16pt"
+            app:layout_anchor="@id/viewB"/>
 
         <Button
             android:id="@+id/btPlay"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="17dp"
+            app:layout_anchorGravity="bottom|center"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/buttonshape"
             android:enabled="true"
             android:gravity="center"
             android:onClick="clickPlay"
-            android:text="@string/single"
-            android:textSize="14pt" />
+            android:text="@string/play"
+            android:textSize="14pt"
+            app:layout_anchor="@id/viewB" />
 
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="word"
-            android:textColor="@android:color/white"
-            android:textSize="16pt"
-            android:layout_centerInParent="true"
-            android:layout_above="@+id/btNext"
-            android:layout_alignParentStart="true" />
+    </android.support.design.widget.CoordinatorLayout>
 
-    </RelativeLayout>
 </FrameLayout>

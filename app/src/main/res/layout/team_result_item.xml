@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="2dp"
-    tools:context="com.htoja.mifik.htoja.activity.TeamsActivity">
+    tools:context="com.htoja.mifik.htoja.activity.RoundActivity">
 
     <TextView
         android:id="@+id/tvTeamName"
@@ -19,11 +19,13 @@
         android:gravity="center"
         android:layout_alignParentLeft="true" />
 
-    <ImageButton
-        android:src="@android:drawable/ic_menu_delete"
-        android:id="@+id/childButton"
+    <TextView
+        android:id="@+id/tvResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="14pt"
+        android:textColor="@android:color/holo_blue_bright"
+        android:gravity="center"
         android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

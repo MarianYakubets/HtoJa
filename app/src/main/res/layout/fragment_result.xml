@@ -8,15 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="word"
-            android:textColor="@android:color/white"
-            android:textSize="14pt" />
 
         <Button
             android:id="@+id/btNext"
@@ -33,6 +24,30 @@
             android:onClick="clickNext"
             android:text="@string/next"
             android:textSize="16pt" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="word"
+            android:textColor="@color/colorAccent"
+            android:textSize="30pt"
+            android:layout_below="@+id/tvName"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="139dp" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="word"
+            android:textColor="@android:color/white"
+            android:textSize="14pt"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="48dp" />
 
     </RelativeLayout>
 </FrameLayout>

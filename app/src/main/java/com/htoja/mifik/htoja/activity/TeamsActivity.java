@@ -76,7 +76,7 @@ public class TeamsActivity extends AppCompatActivity {
                 convertView = inflater.inflate(R.layout.team_item, null);
                 viewHolder = new ViewHolder();
                 viewHolder.text = (TextView) convertView
-                        .findViewById(R.id.childTextView);
+                        .findViewById(R.id.tvTeamName);
                 viewHolder.button = (ImageButton) convertView
                         .findViewById(R.id.childButton);
                 convertView.setTag(viewHolder);
