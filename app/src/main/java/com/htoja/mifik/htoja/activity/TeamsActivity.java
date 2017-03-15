@@ -14,11 +14,8 @@ import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
-import com.htoja.mifik.htoja.data.TeamsSet;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class TeamsActivity extends AppCompatActivity {
