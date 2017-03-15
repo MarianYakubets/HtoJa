@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="2dp"
-    tools:context="com.htoja.mifik.htoja.activity.RoundActivity">
+    tools:context="com.htoja.mifik.htoja.activity.ResultActivity">
 
     <TextView
         android:id="@+id/tvTeamName"

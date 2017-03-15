@@ -10,12 +10,12 @@ import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.fragment.NextTeamFragment;
 import com.htoja.mifik.htoja.fragment.ResultFragment;
 
-public class RoundActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_round);
+        setContentView(R.layout.activity_result);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION

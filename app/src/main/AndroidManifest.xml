@@ -26,7 +26,7 @@
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RoundActivity"
+            android:name=".activity.ResultActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
