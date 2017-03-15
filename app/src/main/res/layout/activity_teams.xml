@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_game"
@@ -8,41 +8,63 @@
     android:background="#F44336"
     tools:context="com.htoja.mifik.htoja.activity.TeamsActivity">
 
-    <ListView
-        android:id="@+id/list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="100dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity ="end|bottom"
-        android:text="@string/next"
-        android:background="@drawable/buttonshape"
-        android:textSize="14pt"
-        android:id="@+id/btNext"
-        android:onClick="clickPlay"
-        android:enabled="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp" />
+        <LinearLayout
+            android:id="@+id/viewA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="horizontal">
 
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:dividerHeight="5dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/viewB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btNext"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom|center"
+                android:layout_marginBottom="26dp"
+                android:background="@drawable/buttonshape"
+                android:enabled="true"
+                android:gravity="center"
+                android:onClick="clickPlay"
+                android:text="@string/next"
+                android:textSize="14pt"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_height="77dp"
+        android:layout_margin="16dp"
+        android:clickable="true"
         android:onClick="clickAdd"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_above="@+id/btNext"
-        android:layout_toEndOf="@+id/btNext"
-        android:layout_marginStart="14dp" />
+        app:layout_anchor="@id/viewA"
+        app:layout_anchorGravity="bottom|right|end"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
