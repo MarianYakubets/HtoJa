@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by mi on 3/2/2017.
  */
-public class ResultFragment extends Fragment {
+public class RoundResultFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -1,9 +1,10 @@
-package com.htoja.mifik.htoja.activity;
+package com.htoja.mifik.htoja.fragment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,31 +14,30 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.activity.GameActivity;
+import com.htoja.mifik.htoja.activity.SetupActivity;
 import com.htoja.mifik.htoja.control.TeamGameManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamsActivity extends AppCompatActivity {
-
+/**
+ * Created by mi on 3/2/2017.
+ */
+public class SetupTeamsFragment extends Fragment {
     private ListView listView;
-    private ListAdapter adapter;
+    private SetupTeamsFragment.ListAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teams);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle bundle) {
+        return inflater.inflate(R.layout.fragment_setup_teams, container, false);
+    }
 
-        listView = (ListView) findViewById(R.id.list);
-
-        adapter = new ListAdapter(TeamsActivity.this, R.layout.team_item, new ArrayList<String>());
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        listView = (ListView) getActivity().findViewById(R.id.list);
+        adapter = new SetupTeamsFragment.ListAdapter(getContext(), R.layout.team_item, new ArrayList<String>());
         listView.setAdapter(adapter);
 
         clickAdd(null);
@@ -48,11 +48,6 @@ public class TeamsActivity extends AppCompatActivity {
         adapter.add("КОМАНДА " + (adapter.getCount() + 1));
     }
 
-    public void clickPlay(View view) {
-        TeamGameManager.getInstance().startNewSet(adapter.getData());
-        Intent i = new Intent(getApplicationContext(), GameActivity.class);
-        startActivity(i);
-    }
 
     private class ListAdapter extends ArrayAdapter<String> {
         private final List<String> data;
@@ -103,6 +98,4 @@ public class TeamsActivity extends AppCompatActivity {
             ImageButton button;
         }
     }
-
-
 }

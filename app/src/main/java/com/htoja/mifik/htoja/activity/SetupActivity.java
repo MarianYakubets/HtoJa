@@ -7,15 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.htoja.mifik.htoja.R;
-import com.htoja.mifik.htoja.fragment.NextTeamFragment;
-import com.htoja.mifik.htoja.fragment.RoundResultFragment;
+import com.htoja.mifik.htoja.fragment.SetupSettingsFragment;
+import com.htoja.mifik.htoja.fragment.SetupTeamsFragment;
 
-public class ResultActivity extends AppCompatActivity {
+public class SetupActivity extends AppCompatActivity {
+
+    private SetupTeamsFragment setupTeamsFragment;
+    private SetupSettingsFragment setupSettingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_setup);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -23,19 +26,22 @@ public class ResultActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        showResultFragment();
+        setupTeamsFragment = new SetupTeamsFragment();
+        setupSettingsFragment = new SetupSettingsFragment();
+        showTeamsFragment();
     }
 
-    private void showResultFragment() {
+
+    private void showTeamsFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new RoundResultFragment());
+        transaction.replace(R.id.fragment_container, setupTeamsFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
     public void clickNext(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new NextTeamFragment());
+        transaction.replace(R.id.fragment_container, setupSettingsFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -43,5 +49,9 @@ public class ResultActivity extends AppCompatActivity {
     public void clickPlay(View view) {
         Intent i = new Intent(this, GameActivity.class);
         startActivity(i);
+    }
+
+    public void clickAdd(View view) {
+        setupTeamsFragment.clickAdd(view);
     }
 }

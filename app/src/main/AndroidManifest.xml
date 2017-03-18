@@ -30,7 +30,7 @@
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TeamsActivity"
+            android:name=".activity.SetupActivity"
             android:label="@string/title_activity_teams"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />

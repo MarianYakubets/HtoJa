@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startTeams(View view) {
-        Intent i = new Intent(getApplicationContext(), TeamsActivity.class);
+        Intent i = new Intent(getApplicationContext(), SetupActivity.class);
         startActivity(i);
     }
 }
