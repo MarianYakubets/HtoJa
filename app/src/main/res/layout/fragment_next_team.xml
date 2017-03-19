@@ -9,10 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTargetPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:gravity="center"
+                android:text="TARGET"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="16pt"/>
 
             <LinearLayout
                 android:id="@+id/viewA"

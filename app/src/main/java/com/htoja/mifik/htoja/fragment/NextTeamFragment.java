@@ -33,11 +33,14 @@ public class NextTeamFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        TextView target = (TextView) getActivity().findViewById(R.id.tvTargetPoints);
+        target.setText("Ціль: " + TeamGameManager.getInstance().getPointsToWin());
+
         listView = (ListView) getActivity().findViewById(R.id.list);
         adapter = new NextTeamFragment.ListAdapter(getContext(), R.layout.team_result_item, new ArrayList<String>());
         listView.setAdapter(adapter);
 
-        String nextTeam = TeamGameManager.getInstance().nextTeam();
+        String nextTeam = TeamGameManager.getInstance().getCurrentTeam();
         StringBuilder sb = new StringBuilder();
         sb.append("ДАЛІ: \n" + nextTeam);
 

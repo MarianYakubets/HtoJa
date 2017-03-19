@@ -7,13 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.control.TeamGameManager;
+import com.htoja.mifik.htoja.fragment.NextTeamFragment;
 import com.htoja.mifik.htoja.fragment.SetupSettingsFragment;
 import com.htoja.mifik.htoja.fragment.SetupTeamsFragment;
+
+import java.util.List;
 
 public class SetupActivity extends AppCompatActivity {
 
     private SetupTeamsFragment setupTeamsFragment;
     private SetupSettingsFragment setupSettingsFragment;
+    private List<String> teams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     public void clickNext(View view) {
+        teams = setupTeamsFragment.getTeams();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, setupSettingsFragment);
         transaction.addToBackStack(null);
@@ -53,5 +59,14 @@ public class SetupActivity extends AppCompatActivity {
 
     public void clickAdd(View view) {
         setupTeamsFragment.clickAdd(view);
+    }
+
+    public void clickStart(View view) {
+        TeamGameManager.getInstance().startNewSet(teams, setupSettingsFragment.getTargetWords(), setupSettingsFragment.getSeconds());
+        TeamGameManager.getInstance().firstTeam();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new NextTeamFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

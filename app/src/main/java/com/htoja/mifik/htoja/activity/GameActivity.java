@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.control.TeamGameManager;
 import com.htoja.mifik.htoja.data.Dictionary;
 
 import java.text.SimpleDateFormat;
@@ -25,10 +26,10 @@ public class GameActivity extends AppCompatActivity {
     private TextView textView;
     private List<String> words;
     private int counter = 0;
-    private static final int SECONDS = 10;
     private CountDownTimer timer;
     private ArrayList<String> correct = new ArrayList<>();
     private ArrayList<String> skip = new ArrayList<>();
+    private int seconds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class GameActivity extends AppCompatActivity {
 
         words = Dictionary.getWords();
         Collections.shuffle(words, new Random(System.nanoTime()));
+
+        seconds = TeamGameManager.getInstance().getRoundTime();
 
         setNextWord();
         startTimer();
@@ -70,7 +73,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void startTimer() {
         final TextView timerView = (TextView) findViewById(R.id.tvTimer);
-        timer = new CountDownTimer(SECONDS * 1000, 1000) {
+        timer = new CountDownTimer(seconds * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timerView.setText(new SimpleDateFormat("mm:ss").format(new Date(millisUntilFinished)));
             }

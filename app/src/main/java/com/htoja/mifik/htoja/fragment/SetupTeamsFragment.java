@@ -48,6 +48,10 @@ public class SetupTeamsFragment extends Fragment {
         adapter.add("КОМАНДА " + (adapter.getCount() + 1));
     }
 
+    public List<String> getTeams(){
+        return adapter.getData();
+    }
+
 
     private class ListAdapter extends ArrayAdapter<String> {
         private final List<String> data;

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.control.TeamGameManager;
 import com.htoja.mifik.htoja.fragment.NextTeamFragment;
 import com.htoja.mifik.htoja.fragment.RoundResultFragment;
 
@@ -34,6 +35,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void clickNext(View view) {
+        TeamGameManager.getInstance().nextTeam();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new NextTeamFragment());
         transaction.addToBackStack(null);

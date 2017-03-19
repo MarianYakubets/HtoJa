@@ -22,7 +22,7 @@ public class TeamGameManager {
     private TeamGameManager() {
     }
 
-    public void startNewSet(List<String> teams) {
+    public void startNewSet(List<String> teams, int targetWords, int seconds) {
         this.teams = teams;
         this.currentTeam = teams.get(0);
 
@@ -30,11 +30,24 @@ public class TeamGameManager {
         for (String team : teams) {
             teamMap.put(team, 0);
         }
-        this.currentSet = new TeamsSet(teamMap);
+        this.currentSet = new TeamsSet(teamMap, targetWords, seconds);
     }
 
     public String getCurrentTeam() {
         return this.currentTeam;
+    }
+
+    public int getRoundTime() {
+        return currentSet.getRoundTime();
+    }
+
+    public int getPointsToWin() {
+        return currentSet.getPointsToWin();
+    }
+
+    public String firstTeam(){
+        currentTeam = teams.get(0);
+        return currentTeam;
     }
 
     public String nextTeam() {
