@@ -14,6 +14,7 @@ public class TeamGameManager {
     private TeamsSet currentSet;
     private String currentTeam;
     private List<String> teams;
+    private int rounds = 1;
 
     public static TeamGameManager getInstance() {
         return ourInstance;
@@ -45,7 +46,7 @@ public class TeamGameManager {
         return currentSet.getPointsToWin();
     }
 
-    public String firstTeam(){
+    public String firstTeam() {
         currentTeam = teams.get(0);
         return currentTeam;
     }
@@ -54,10 +55,15 @@ public class TeamGameManager {
         int i = teams.indexOf(currentTeam);
         i++;
         if (i >= teams.size()) {
+            rounds++;
             i = 0;
         }
         currentTeam = teams.get(i);
         return currentTeam;
+    }
+
+    public int getRound() {
+        return this.rounds;
     }
 
     public void addCurrentTeamPoints(int points) {

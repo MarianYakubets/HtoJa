@@ -1,7 +1,6 @@
 package com.htoja.mifik.htoja.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,9 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
-import com.htoja.mifik.htoja.activity.GameActivity;
-import com.htoja.mifik.htoja.activity.SetupActivity;
-import com.htoja.mifik.htoja.control.TeamGameManager;
 
 import java.util.ArrayList;
 import java.util.List;

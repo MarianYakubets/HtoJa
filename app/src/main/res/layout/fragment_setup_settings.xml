@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textColor="@android:color/holo_orange_dark"
-                android:text="60"
+                android:text="10"
                 android:textSize="14pt"
                 app:layout_anchor="@id/rlSeconds"
                 android:layout_alignParentTop="true"
@@ -88,7 +88,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_alignParentEnd="true"
                 android:max="100"
-                android:progress="40"/>
+                android:progress="0"/>
         </RelativeLayout>
 
         <View
@@ -136,7 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/buttonshape"
         android:enabled="true"
         android:gravity="center"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.htoja.mifik.htoja.R;
@@ -31,6 +32,8 @@ public class SetupActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setupTeamsFragment = new SetupTeamsFragment();
         setupSettingsFragment = new SetupSettingsFragment();
         showTeamsFragment();
@@ -40,7 +43,7 @@ public class SetupActivity extends AppCompatActivity {
     private void showTeamsFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, setupTeamsFragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack("Команди");
         transaction.commit();
     }
 
@@ -48,7 +51,7 @@ public class SetupActivity extends AppCompatActivity {
         teams = setupTeamsFragment.getTeams();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, setupSettingsFragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack("Налаштування");
         transaction.commit();
     }
 
@@ -66,7 +69,13 @@ public class SetupActivity extends AppCompatActivity {
         TeamGameManager.getInstance().firstTeam();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new NextTeamFragment());
-        transaction.addToBackStack(null);
+        transaction.addToBackStack("Наступна команда");
         transaction.commit();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

@@ -36,6 +36,9 @@ public class NextTeamFragment extends Fragment {
         TextView target = (TextView) getActivity().findViewById(R.id.tvTargetPoints);
         target.setText("Ціль: " + TeamGameManager.getInstance().getPointsToWin());
 
+        TextView round = (TextView) getActivity().findViewById(R.id.tvRound);
+        round.setText("Раунд: " + TeamGameManager.getInstance().getRound());
+
         listView = (ListView) getActivity().findViewById(R.id.list);
         adapter = new NextTeamFragment.ListAdapter(getContext(), R.layout.team_result_item, new ArrayList<String>());
         listView.setAdapter(adapter);
