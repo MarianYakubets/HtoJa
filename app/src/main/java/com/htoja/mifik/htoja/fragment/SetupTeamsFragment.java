@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.control.TeamGameManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +33,23 @@ public class SetupTeamsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        listView = (ListView) getActivity().findViewById(R.id.list);
-        adapter = new SetupTeamsFragment.ListAdapter(getContext(), R.layout.team_item, new ArrayList<String>());
-        listView.setAdapter(adapter);
+        if (adapter == null) {
+            adapter = new SetupTeamsFragment.ListAdapter(getContext(), R.layout.team_item, new ArrayList<String>());
+            listView = (ListView) getActivity().findViewById(R.id.list);
+            listView.setAdapter(adapter);
 
-        clickAdd(null);
-        clickAdd(null);
+            clickAdd(null);
+            clickAdd(null);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     public void clickAdd(View view) {
         adapter.add("КОМАНДА " + (adapter.getCount() + 1));
     }
 
-    public List<String> getTeams(){
+    public List<String> getTeams() {
         return adapter.getData();
     }
 

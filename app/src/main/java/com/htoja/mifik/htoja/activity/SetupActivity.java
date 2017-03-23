@@ -2,9 +2,11 @@ package com.htoja.mifik.htoja.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.htoja.mifik.htoja.R;
@@ -19,6 +21,7 @@ public class SetupActivity extends AppCompatActivity {
 
     private SetupTeamsFragment setupTeamsFragment;
     private SetupSettingsFragment setupSettingsFragment;
+    private NextTeamFragment nextTeamFragment;
     private List<String> teams;
 
     @Override
@@ -34,11 +37,29 @@ public class SetupActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_menu);
+
         setupTeamsFragment = new SetupTeamsFragment();
         setupSettingsFragment = new SetupSettingsFragment();
-        showTeamsFragment();
-    }
+        nextTeamFragment = new NextTeamFragment();
 
+        showTeamsFragment();
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                if (setupTeamsFragment.isVisible()) {
+                    getSupportActionBar().setTitle(R.string.title_menu);
+                } else if (setupSettingsFragment.isVisible()) {
+                    getSupportActionBar().setTitle(R.string.title_teams);
+                } else if (nextTeamFragment.isVisible()) {
+                    getSupportActionBar().setTitle(R.string.title_menu);
+                }
+            }
+        });
+    }
 
     private void showTeamsFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -57,7 +78,7 @@ public class SetupActivity extends AppCompatActivity {
 
     public void clickPlay(View view) {
         Intent i = new Intent(this, GameActivity.class);
-        startActivity(i);
+        startActivityForResult(i, RESULT_OK);
     }
 
     public void clickAdd(View view) {
@@ -68,7 +89,7 @@ public class SetupActivity extends AppCompatActivity {
         TeamGameManager.getInstance().startNewSet(teams, setupSettingsFragment.getTargetWords(), setupSettingsFragment.getSeconds());
         TeamGameManager.getInstance().firstTeam();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new NextTeamFragment());
+        transaction.replace(R.id.fragment_container, nextTeamFragment);
         transaction.addToBackStack("Наступна команда");
         transaction.commit();
     }
@@ -77,5 +98,31 @@ public class SetupActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (setupTeamsFragment.isVisible() || nextTeamFragment.isVisible()) {
+            startMainActivity();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void startMainActivity() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

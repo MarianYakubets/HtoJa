@@ -9,6 +9,9 @@
     <string name="next">ДАЛІ</string>
     <string name="play">ГРАТИ</string>
     <string name="title_activity_teams">Teams</string>
+    <string name="title_teams">Команди</string>
+    <string name="title_options">Опції</string>
+    <string name="title_menu">Меню</string>
 
     <!-- Strings related to Settings -->
 

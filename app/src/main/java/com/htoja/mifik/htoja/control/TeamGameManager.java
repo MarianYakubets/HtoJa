@@ -71,6 +71,10 @@ public class TeamGameManager {
         currentSet.getTeamResults().put(currentTeam, currentPoints + points);
     }
 
+    public boolean hasStarted() {
+        return currentSet != null;
+    }
+
     public Map<String, Integer> getTeamResults() {
         return currentSet.getTeamResults();
     }

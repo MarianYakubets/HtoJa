@@ -26,7 +26,9 @@
         <activity
             android:name=".activity.GameActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="@string/title_menu"/>
+
         <activity
             android:name=".activity.ResultActivity"
             android:screenOrientation="portrait" />
