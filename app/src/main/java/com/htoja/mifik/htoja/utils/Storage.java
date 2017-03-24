@@ -1,7 +1,5 @@
 package com.htoja.mifik.htoja.utils;
 
-import com.htoja.mifik.htoja.control.TeamGameManager;
-
 /**
  * Created by mi on 3/2/2017.
  */

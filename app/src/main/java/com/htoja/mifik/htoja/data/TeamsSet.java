@@ -12,6 +12,7 @@ public class TeamsSet {
     private int roundTime = 60;
     private boolean ended = false;
     private List<String> categories = new ArrayList<>();
+    private String victorian;
 
     public TeamsSet(HashMap<String, Integer> teamResults, int pointsToWin, int roundTime,  boolean fine) {
         this.teamResults = teamResults;
@@ -66,5 +67,13 @@ public class TeamsSet {
 
     public boolean hasFine() {
         return fine;
+    }
+
+    public void setVictorian(String victorian) {
+        this.victorian = victorian;
+    }
+
+    public String getVictorian() {
+        return victorian;
     }
 }

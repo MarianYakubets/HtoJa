@@ -36,6 +36,7 @@ public class ResultActivity extends AppCompatActivity {
         if (bundle != null && bundle.getBoolean("SHOW_NEXT_TEAM")) {
             showNextTeamFragment();
         } else {
+
             showResultFragment();
         }
     }
@@ -48,7 +49,6 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void clickNext(View view) {
-        TeamGameManager.getInstance().nextTeam();
         showNextTeamFragment();
     }
 

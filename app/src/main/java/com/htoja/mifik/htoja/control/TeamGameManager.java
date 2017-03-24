@@ -51,15 +51,29 @@ public class TeamGameManager {
         return currentTeam;
     }
 
-    public String nextTeam() {
+    public void nextTeam() {
         int i = teams.indexOf(currentTeam);
         i++;
         if (i >= teams.size()) {
-            rounds++;
+            nextRound();
             i = 0;
         }
         currentTeam = teams.get(i);
-        return currentTeam;
+    }
+
+    private void nextRound() {
+        for (Map.Entry<String, Integer> entry : getTeamResults().entrySet()) {
+            if (entry.getValue() >= currentSet.getPointsToWin()) {
+                currentSet.setEnded(true);
+                currentSet.setVictorian(entry.getKey());
+                return;
+            }
+        }
+        rounds++;
+    }
+
+    public String getVictorian() {
+        return currentSet.getVictorian();
     }
 
     public int getRound() {
@@ -75,7 +89,11 @@ public class TeamGameManager {
         return currentSet != null;
     }
 
-    public boolean hasFine(){
+    public boolean hasEnded() {
+        return currentSet.isEnded();
+    }
+
+    public boolean hasFine() {
         return currentSet.hasFine();
     }
 

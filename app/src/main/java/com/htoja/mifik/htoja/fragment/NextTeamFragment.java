@@ -23,6 +23,7 @@ import java.util.List;
 public class NextTeamFragment extends Fragment {
     private ListView listView;
     private NextTeamFragment.ListAdapter adapter;
+    private TextView resultView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,17 +43,20 @@ public class NextTeamFragment extends Fragment {
         listView = (ListView) getActivity().findViewById(R.id.list);
         adapter = new NextTeamFragment.ListAdapter(getContext(), R.layout.team_result_item, new ArrayList<String>());
         listView.setAdapter(adapter);
-
-        String nextTeam = TeamGameManager.getInstance().getCurrentTeam();
-        StringBuilder sb = new StringBuilder();
-        sb.append("ДАЛІ: \n" + nextTeam);
-
-        TextView resultView = (TextView) view.findViewById(R.id.tvNextName);
-        resultView.setText(sb.toString());
+        resultView = (TextView) view.findViewById(R.id.tvNextName);
 
         adapter.addAll(TeamGameManager.getInstance().getTeamResults().keySet());
+
+        if (TeamGameManager.getInstance().hasEnded()) {
+            showEndedMessage();
+        } else {
+            resultView.setText("ДАЛІ: \n" + TeamGameManager.getInstance().getCurrentTeam());
+        }
     }
 
+    private void showEndedMessage() {
+        resultView.setText("Переможець: \n" + TeamGameManager.getInstance().getVictorian());
+    }
 
     private class ListAdapter extends ArrayAdapter<String> {
         private final List<String> data;
