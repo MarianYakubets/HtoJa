@@ -34,13 +34,17 @@ public class RoundResultFragment extends Fragment {
         StringBuilder sb = new StringBuilder();
         sb.append("Кінець раунду: \n" + TeamGameManager.getInstance().getCurrentTeam());
 
-        TeamGameManager.getInstance().addCurrentTeamPoints(correct.size() - skip.size());
+        int result = correct.size();
+        if (TeamGameManager.getInstance().hasFine()) {
+            result -= skip.size();
+        }
+        TeamGameManager.getInstance().addCurrentTeamPoints(result);
         TextView tvName = (TextView) view.findViewById(R.id.tvName);
         TextView tvResult = (TextView) view.findViewById(R.id.tvResult);
         tvName.setText(sb.toString());
 
         if (correct != null && skip != null) {
-            tvResult.setText(String.valueOf(correct.size() - skip.size()) + "\n БАЛІВ");
+            tvResult.setText(String.valueOf(result) + "\n БАЛІВ");
         }
 
         super.onViewCreated(view, savedInstanceState);

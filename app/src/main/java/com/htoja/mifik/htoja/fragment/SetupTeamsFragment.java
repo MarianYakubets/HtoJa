@@ -16,6 +16,8 @@ import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,15 +36,13 @@ public class SetupTeamsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         if (adapter == null) {
-            adapter = new SetupTeamsFragment.ListAdapter(getContext(), R.layout.team_item, new ArrayList<String>());
-            listView = (ListView) getActivity().findViewById(R.id.list);
-            listView.setAdapter(adapter);
-
-            clickAdd(null);
-            clickAdd(null);
-        } else {
-            adapter.notifyDataSetChanged();
+            List<String> names = new ArrayList<>(2);
+            names.add("КОМАНДА 1");
+            names.add("КОМАНДА 2");
+            adapter = new SetupTeamsFragment.ListAdapter(getContext(), R.layout.team_item, names);
         }
+        listView = (ListView) getActivity().findViewById(R.id.list);
+        listView.setAdapter(adapter);
     }
 
     public void clickAdd(View view) {

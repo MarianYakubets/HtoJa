@@ -6,19 +6,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class TeamsSet {
+    private boolean fine;
     private HashMap<String, Integer> teamResults = new LinkedHashMap<>();
     private int pointsToWin = 20;
     private int roundTime = 60;
     private boolean ended = false;
     private List<String> categories = new ArrayList<>();
 
-    public TeamsSet() {
-    }
-
-    public TeamsSet(HashMap<String, Integer> teamResults, int pointsToWin, int roundTime) {
+    public TeamsSet(HashMap<String, Integer> teamResults, int pointsToWin, int roundTime,  boolean fine) {
         this.teamResults = teamResults;
         this.pointsToWin = pointsToWin;
         this.roundTime = roundTime;
+        this.fine = fine;
     }
 
     public TeamsSet(HashMap<String, Integer> teamResults) {
@@ -63,5 +62,9 @@ public class TeamsSet {
 
     public void setCategories(List<String> categories) {
         this.categories = categories;
+    }
+
+    public boolean hasFine() {
+        return fine;
     }
 }

@@ -14,7 +14,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,16 +26,17 @@
         </activity>
         <activity
             android:name=".activity.GameActivity"
+            android:label="@string/title_menu"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:label="@string/title_menu"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".activity.ResultActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.SetupActivity"
-            android:label="@string/title_activity_teams"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

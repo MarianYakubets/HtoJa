@@ -86,7 +86,8 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     public void clickStart(View view) {
-        TeamGameManager.getInstance().startNewSet(teams, setupSettingsFragment.getTargetWords(), setupSettingsFragment.getSeconds());
+        TeamGameManager.getInstance().startNewSet(teams, setupSettingsFragment.getTargetWords(),
+                setupSettingsFragment.getSeconds(), setupSettingsFragment.getFine());
         TeamGameManager.getInstance().firstTeam();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, nextTeamFragment);

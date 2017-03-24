@@ -90,4 +90,6 @@
     <string name="number_words">Кількість слів</string>
     <string name="seconds_round">Час раунду</string>
     <string name="fine">Штраф за пропуск</string>
+    <string name="goon">ПРОДОВЖИТИ</string>
+    <string name="new_game">Нова Гра</string>
 </resources>

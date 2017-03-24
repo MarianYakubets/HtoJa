@@ -78,5 +78,7 @@ public class SetupSettingsFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+        swFine = (Switch) getActivity().findViewById(R.id.swFine);
     }
 }

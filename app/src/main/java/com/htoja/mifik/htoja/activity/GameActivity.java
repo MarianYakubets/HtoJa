@@ -90,6 +90,7 @@ public class GameActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(CORRECT, correct);
         bundle.putStringArrayList(SKIP, skip);
+        i.putExtra("SHOW_NEXT_TEAM", false);
         i.putExtras(bundle);
         startActivity(i);
     }
