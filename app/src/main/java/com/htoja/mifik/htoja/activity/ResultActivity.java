@@ -57,10 +57,14 @@ public class ResultActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, new NextTeamFragment());
         transaction.addToBackStack(null);
         transaction.commit();
+
     }
 
     public void clickPlay(View view) {
         Intent i = new Intent(this, GameActivity.class);
+        if (TeamGameManager.getInstance().hasEnded()) {
+            i = new Intent(this, MainActivity.class);
+        }
         startActivity(i);
     }
 

@@ -21,6 +21,7 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
     public static final String CORRECT = "correct";
     public static final String SKIP = "skip";
+    public static final String TEAM = "team";
 
 
     private TextView textView;
@@ -90,8 +91,19 @@ public class GameActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(CORRECT, correct);
         bundle.putStringArrayList(SKIP, skip);
+        bundle.putString(TEAM, TeamGameManager.getInstance().getCurrentTeam());
         i.putExtra("SHOW_NEXT_TEAM", false);
         i.putExtras(bundle);
+        saveResults();
         startActivity(i);
+    }
+
+    private void saveResults() {
+        int result = correct.size();
+        if (TeamGameManager.getInstance().hasFine()) {
+            result -= skip.size();
+        }
+        TeamGameManager.getInstance().addCurrentTeamPoints(result);
+        TeamGameManager.getInstance().nextTeam();
     }
 }

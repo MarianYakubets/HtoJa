@@ -21,9 +21,15 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+    }
+
+    @Override
+    protected void onPostResume() {
         if (!TeamGameManager.getInstance().hasStarted()) {
             findViewById(R.id.btContinue).setVisibility(View.GONE);
         }
+        super.onPostResume();
     }
 
     public void startSingle(View view) {

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -56,6 +57,8 @@ public class NextTeamFragment extends Fragment {
 
     private void showEndedMessage() {
         resultView.setText("Переможець: \n" + TeamGameManager.getInstance().getVictorian());
+        Button btn = (Button) getActivity().findViewById(R.id.btPlay);
+        btn.setText(getActivity().getText(R.string.title_menu));
     }
 
     private class ListAdapter extends ArrayAdapter<String> {

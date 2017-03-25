@@ -30,15 +30,15 @@ public class RoundResultFragment extends Fragment {
         Bundle bundle = getActivity().getIntent().getExtras();
         ArrayList<String> skip = bundle.getStringArrayList(GameActivity.SKIP);
         ArrayList<String> correct = bundle.getStringArrayList(GameActivity.CORRECT);
+        String team = bundle.getString(GameActivity.TEAM);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Кінець раунду: \n" + TeamGameManager.getInstance().getCurrentTeam());
+        sb.append("Кінець раунду: \n" + team);
 
         int result = correct.size();
         if (TeamGameManager.getInstance().hasFine()) {
             result -= skip.size();
         }
-        TeamGameManager.getInstance().addCurrentTeamPoints(result);
         TextView tvName = (TextView) view.findViewById(R.id.tvName);
         TextView tvResult = (TextView) view.findViewById(R.id.tvResult);
         tvName.setText(sb.toString());

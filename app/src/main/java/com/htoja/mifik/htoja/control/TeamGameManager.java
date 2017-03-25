@@ -62,11 +62,12 @@ public class TeamGameManager {
     }
 
     private void nextRound() {
+        int max = currentSet.getPointsToWin();
         for (Map.Entry<String, Integer> entry : getTeamResults().entrySet()) {
-            if (entry.getValue() >= currentSet.getPointsToWin()) {
+            if (entry.getValue() >= max) {
                 currentSet.setEnded(true);
                 currentSet.setVictorian(entry.getKey());
-                return;
+                max = entry.getValue();
             }
         }
         rounds++;
@@ -86,7 +87,7 @@ public class TeamGameManager {
     }
 
     public boolean hasStarted() {
-        return currentSet != null;
+        return currentSet != null && !hasEnded();
     }
 
     public boolean hasEnded() {
