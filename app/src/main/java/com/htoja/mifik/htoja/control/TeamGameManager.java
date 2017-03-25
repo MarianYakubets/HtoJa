@@ -32,6 +32,7 @@ public class TeamGameManager {
             teamMap.put(team, 0);
         }
         this.currentSet = new TeamsSet(teamMap, targetWords, seconds, fine);
+        rounds = 1;
     }
 
     public String getCurrentTeam() {
