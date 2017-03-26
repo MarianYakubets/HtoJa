@@ -1,6 +1,9 @@
 package com.htoja.mifik.htoja.control;
 
+import android.content.Context;
+
 import com.htoja.mifik.htoja.data.TeamsSet;
+import com.htoja.mifik.htoja.utils.Storage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -114,5 +117,10 @@ public class TeamGameManager {
         this.currentTeam = currentTeam;
         this.rounds = round;
         this.currentSet = set;
+    }
+
+    public void end(Context ctx) {
+        this.currentSet.setEnded(true);
+        Storage.saveCurrentTeamState(ctx);
     }
 }
