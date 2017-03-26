@@ -2,6 +2,8 @@ package com.htoja.mifik.htoja.control;
 
 import com.htoja.mifik.htoja.data.TeamsSet;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -10,10 +12,8 @@ import java.util.Map;
 
 public class TeamGameManager {
     private static TeamGameManager ourInstance = new TeamGameManager();
-
     private TeamsSet currentSet;
     private String currentTeam;
-    private List<String> teams;
     private int rounds = 1;
 
     public static TeamGameManager getInstance() {
@@ -24,19 +24,22 @@ public class TeamGameManager {
     }
 
     public void startNewSet(List<String> teams, int targetWords, int seconds, boolean fine) {
-        this.teams = teams;
         this.currentTeam = teams.get(0);
-
-        HashMap<String, Integer> teamMap = new LinkedHashMap<>(teams.size());
+        LinkedHashMap<String, Integer> teamResults = new LinkedHashMap<>(teams.size());
         for (String team : teams) {
-            teamMap.put(team, 0);
+            teamResults.put(team, 0);
         }
-        this.currentSet = new TeamsSet(teamMap, targetWords, seconds, fine);
+        this.currentSet = new TeamsSet(teamResults, teams, targetWords, seconds, fine);
         rounds = 1;
     }
 
     public String getCurrentTeam() {
         return this.currentTeam;
+    }
+
+
+    public TeamsSet getCurrentTeamSet() {
+        return this.currentSet;
     }
 
     public int getRoundTime() {
@@ -48,18 +51,22 @@ public class TeamGameManager {
     }
 
     public String firstTeam() {
-        currentTeam = teams.get(0);
+        currentTeam = currentSet.getTeams().get(0);
         return currentTeam;
     }
 
     public void nextTeam() {
-        int i = teams.indexOf(currentTeam);
+        int i = getTeams().indexOf(currentTeam);
         i++;
-        if (i >= teams.size()) {
+        if (i >= getTeams().size()) {
             nextRound();
             i = 0;
         }
-        currentTeam = teams.get(i);
+        currentTeam = getTeams().get(i);
+    }
+
+    private List<String> getTeams() {
+        return currentSet.getTeams();
     }
 
     private void nextRound() {
@@ -83,8 +90,8 @@ public class TeamGameManager {
     }
 
     public void addCurrentTeamPoints(int points) {
-        int currentPoints = currentSet.getTeamResults().get(currentTeam);
-        currentSet.getTeamResults().put(currentTeam, currentPoints + points);
+        int currentPoints = getTeamResults().get(currentTeam);
+        getTeamResults().put(currentTeam, currentPoints + points);
     }
 
     public boolean hasStarted() {
@@ -96,10 +103,16 @@ public class TeamGameManager {
     }
 
     public boolean hasFine() {
-        return currentSet.hasFine();
+        return currentSet.isFine();
     }
 
     public Map<String, Integer> getTeamResults() {
-        return currentSet.getTeamResults();
+        return this.currentSet.getTeamResults();
+    }
+
+    public void startNewSet(TeamsSet set, String currentTeam, int round) {
+        this.currentTeam = currentTeam;
+        this.rounds = round;
+        this.currentSet = set;
     }
 }

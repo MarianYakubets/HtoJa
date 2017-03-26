@@ -14,7 +14,7 @@ import com.htoja.mifik.htoja.R;
 
 public class SetupSettingsFragment extends Fragment {
     private static final int MIN_WORDS = 10;
-    private static final int MIN_SECONDS = 20;
+    private static final int MIN_SECONDS = 10;
     private TextView tvWords;
     private SeekBar sbWords;
     private TextView tvSeconds;

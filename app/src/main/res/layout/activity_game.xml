@@ -4,49 +4,20 @@
     android:id="@+id/activity_game"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F44336"
+    android:background="@color/colorPrimary"
     tools:context="com.htoja.mifik.htoja.activity.MainActivity">
 
-    <TextView
-        android:id="@+id/tvWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:text="word"
-        android:textColor="@android:color/white"
-        android:textSize="23pt" />
-
-    <LinearLayout
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/csvWord"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:id="@+id/flYes"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:alpha=".1"
-            android:background="@android:color/white"
-            android:clickable="true"
-            android:onClick="clickYes">
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/flNo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:alpha=".1"
-            android:background="@android:color/black"
-            android:clickable="true"
-            android:onClick="clickNo">
-        </FrameLayout>
-    </LinearLayout>
+        android:paddingTop="50dp"
+        android:paddingBottom="80dp"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:clipChildren="false"
+        android:background="@color/colorPrimary"
+        android:clipToPadding="false"/>
 
     <TextView
         android:id="@+id/tvTimer"
@@ -54,15 +25,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/tvWord"
-        android:layout_gravity="end|top"
+        android:layout_gravity="center_horizontal|bottom"
         android:gravity="end|top"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:text="@string/_01_00"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14pt" />
 
 </RelativeLayout>

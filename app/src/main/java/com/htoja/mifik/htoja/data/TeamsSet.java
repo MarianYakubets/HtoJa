@@ -1,36 +1,26 @@
 package com.htoja.mifik.htoja.data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 public class TeamsSet {
     private boolean fine;
-    private HashMap<String, Integer> teamResults = new LinkedHashMap<>();
+    private List<String> teams;
+    private LinkedHashMap<String, Integer> teamResults;
+
     private int pointsToWin = 20;
     private int roundTime = 60;
     private boolean ended = false;
     private List<String> categories = new ArrayList<>();
     private String victorian;
 
-    public TeamsSet(HashMap<String, Integer> teamResults, int pointsToWin, int roundTime,  boolean fine) {
+    public TeamsSet(LinkedHashMap<String, Integer> teamResults, List<String> teams, int pointsToWin, int roundTime, boolean fine) {
         this.teamResults = teamResults;
+        this.teams = teams;
         this.pointsToWin = pointsToWin;
         this.roundTime = roundTime;
         this.fine = fine;
-    }
-
-    public TeamsSet(HashMap<String, Integer> teamResults) {
-        this.teamResults = teamResults;
-    }
-
-    public HashMap<String, Integer> getTeamResults() {
-        return teamResults;
-    }
-
-    public void setTeamResults(HashMap<String, Integer> teamResults) {
-        this.teamResults = teamResults;
     }
 
     public int getPointsToWin() {
@@ -65,15 +55,35 @@ public class TeamsSet {
         this.categories = categories;
     }
 
-    public boolean hasFine() {
-        return fine;
-    }
-
     public void setVictorian(String victorian) {
         this.victorian = victorian;
     }
 
     public String getVictorian() {
         return victorian;
+    }
+
+    public List<String> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<String> teams) {
+        this.teams = teams;
+    }
+
+    public boolean isFine() {
+        return fine;
+    }
+
+    public void setFine(boolean fine) {
+        this.fine = fine;
+    }
+
+    public LinkedHashMap<String, Integer> getTeamResults() {
+        return teamResults;
+    }
+
+    public void setTeamResults(LinkedHashMap<String, Integer> teamResults) {
+        this.teamResults = teamResults;
     }
 }
