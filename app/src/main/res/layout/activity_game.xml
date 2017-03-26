@@ -4,7 +4,7 @@
     android:id="@+id/activity_game"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/primary"
     tools:context="com.htoja.mifik.htoja.activity.MainActivity">
 
     <com.yuyakaido.android.cardstackview.CardStackView
@@ -16,7 +16,7 @@
         android:paddingRight="30dp"
         android:paddingLeft="30dp"
         android:clipChildren="false"
-        android:background="@color/colorPrimary"
+        android:background="@color/primary"
         android:clipToPadding="false"/>
 
     <TextView
@@ -31,7 +31,7 @@
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:text="@string/_01_00"
-        android:textColor="@android:color/black"
+        android:textColor="@color/primary_text"
         android:textSize="14pt" />
 
 </RelativeLayout>

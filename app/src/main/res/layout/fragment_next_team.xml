@@ -2,7 +2,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/primary"
     android:label="@string/next">
 
 
@@ -29,7 +29,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Round"
-                    android:textColor="@android:color/holo_blue_dark"
                     android:textSize="16pt" />
 
                 <TextView
@@ -39,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="TARGET"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@color/secondary_text"
                     android:textSize="16pt" />
 
 
@@ -77,7 +76,6 @@
                     android:layout_gravity="bottom|center"
                     android:gravity="center"
                     android:text="TEAM"
-                    android:textColor="@android:color/secondary_text_light_nodisable"
                     android:textSize="16pt"
                     app:layout_anchor="@id/viewB"
                     app:layout_anchorGravity="top|center"
@@ -87,8 +85,10 @@
                 <Button
                     android:id="@+id/btPlay"
                     style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
                     android:layout_marginBottom="10dp"
                     android:enabled="true"
                     android:gravity="center"

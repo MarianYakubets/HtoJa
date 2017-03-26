@@ -4,7 +4,7 @@
     android:id="@+id/teamItem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/primary_light"
     android:paddingBottom="2dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14pt"
-        android:textColor="@android:color/holo_blue_bright"
+        android:textColor="@color/secondary_text"
         android:gravity="center"
         android:layout_alignParentRight="true"/>
 

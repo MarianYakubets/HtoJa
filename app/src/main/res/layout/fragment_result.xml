@@ -2,7 +2,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/primary">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,12 +12,14 @@
         <Button
             android:id="@+id/btNext"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_gravity="end|bottom"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="17dp"
+            android:layout_marginBottom="10dp"
             android:enabled="true"
             android:gravity="center"
             android:onClick="clickNext"
@@ -29,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/secondary_text"
             android:textSize="30pt"
             android:layout_below="@+id/tvName"
             android:layout_alignParentStart="true"
@@ -40,7 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@android:color/white"
             android:textSize="14pt"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"

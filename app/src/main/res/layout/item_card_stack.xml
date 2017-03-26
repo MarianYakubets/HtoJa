@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardCornerRadius="10dp"
-    card_view:cardBackgroundColor="@android:color/white">
+    card_view:cardBackgroundColor="@color/primary_light">
 
     <TextView
         android:id="@+id/item_card_stack_right_text"
@@ -32,7 +32,7 @@
         android:id="@+id/item_card_stack_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="@color/primary_text"
         android:textSize="16pt"
         android:layout_gravity="center"/>
 
