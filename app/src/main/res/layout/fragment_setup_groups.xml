@@ -26,53 +26,41 @@
                 android:layout_weight="0.3"
                 android:orientation="horizontal">
 
-                <ListView
-                    android:id="@+id/list"
+                <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/grid"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:dividerHeight="5dp" />
+                    android:gravity="center"
+                    android:horizontalSpacing="15dp"
+                    android:numColumns="2"
+                    android:verticalSpacing="15dp" />
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/viewB"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
+                android:layout_height="76dp"
                 android:background="@color/primary_dark"
                 android:orientation="vertical">
-            </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btNext"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:enabled="true"
+                    android:gravity="center"
+                    android:onClick="clickStart"
+                    android:text="@string/next"
+                    android:textSize="14pt"
+                    app:layout_anchor="@id/viewB"
+                    app:layout_anchorGravity="center|bottom" />
+            </LinearLayout>
         </LinearLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="77dp"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:onClick="clickAdd"
-            app:layout_anchor="@id/viewB"
-            app:layout_anchorGravity="top|right"
-            app:srcCompat="@android:drawable/ic_input_add" />
-
-        <Button
-            android:id="@+id/btNext"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            app:layout_anchorGravity="center|bottom"
-            android:layout_marginBottom="10dp"
-            android:enabled="true"
-            android:gravity="center"
-            android:onClick="clickOptions"
-            android:text="@string/next"
-            android:textSize="14pt"
-            app:layout_anchor="@id/viewB" />
-
     </android.support.design.widget.CoordinatorLayout>
 
 </FrameLayout>

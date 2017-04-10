@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/group_card">
+
+    <com.htoja.mifik.htoja.view.SquareTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:text="Група"
+        android:textColor="@color/primary_text"
+        android:textSize="13pt" />
+
+</RelativeLayout>
