@@ -39,6 +39,9 @@ public class SetupGroupsFragment extends Fragment {
             names.add("МІСТА");
             names.add("КРАЇНИ");
             names.add("ФІЛЬМИ");
+            names.add("ЛЮДИ");
+            names.add("ІСТОРІЯ");
+            names.add("РОСЛИНИ");
             adapter = new SetupGroupsFragment.ImageAdapter(getContext(), names);
         }
         gridView = (GridView) getActivity().findViewById(R.id.grid);
@@ -48,11 +51,9 @@ public class SetupGroupsFragment extends Fragment {
 
     public class ImageAdapter extends BaseAdapter {
         private final LayoutInflater layoutInflater;
-        private Context mContext;
         private List<String> groups;
 
         public ImageAdapter(Context c, List<String> groups) {
-            mContext = c;
             this.groups = groups;
             layoutInflater = LayoutInflater.from(c);
         }
