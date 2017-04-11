@@ -6,15 +6,13 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.adapter.CardAdapter;
 import com.htoja.mifik.htoja.control.TeamGameManager;
-import com.htoja.mifik.htoja.data.Dictionary;
+import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.utils.Storage;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
@@ -31,8 +29,6 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
     public static final String SKIP = "skip";
     public static final String TEAM = "team";
 
-    private List<String> words;
-    private int counter = 0;
     private CountDownTimer timer;
     private ArrayList<String> correct = new ArrayList<>();
     private ArrayList<String> skip = new ArrayList<>();
@@ -51,11 +47,9 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        words = Dictionary.getWords();
-        Collections.shuffle(words, new Random(System.nanoTime()));
 
         cardAdapter = new CardAdapter(this);
-        cardAdapter.addAll(words);
+        cardAdapter.addAll(TeamGameManager.getInstance().getWords());
 
         cardStackView = (CardStackView) findViewById(R.id.csvWord);
         cardStackView.setAdapter(cardAdapter);
@@ -63,7 +57,6 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
 
         seconds = TeamGameManager.getInstance().getRoundTime();
 
-        setNextWord();
         startTimer();
     }
 
@@ -74,20 +67,13 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
     }
 
     public void clickYes(int index) {
-        correct.add(words.get(counter));
-        setNextWord();
+        correct.add(cardAdapter.getItem(index));
+        TeamGameManager.getInstance().nextWord();
     }
 
     public void clickNo(int index) {
-        skip.add(words.get(counter));
-        setNextWord();
-    }
-
-    private void setNextWord() {
-        if (counter == words.size()) {
-            counter = 0;
-            Collections.shuffle(words, new Random(System.nanoTime()));
-        }
+        skip.add(cardAdapter.getItem(index));
+        TeamGameManager.getInstance().nextWord();
     }
 
     private void startTimer() {

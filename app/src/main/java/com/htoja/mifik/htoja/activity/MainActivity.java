@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
+import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.utils.Storage;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-
+        Vocabulary.readJson(this);
     }
 
     @Override

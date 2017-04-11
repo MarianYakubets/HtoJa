@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.view.SquareTextView;
 
 import java.util.ArrayList;
@@ -33,15 +34,8 @@ public class SetupCategoriesFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         if (adapter == null) {
-            List<String> names = new ArrayList<>(2);
-            names.add("ТВАРИНИ");
-            names.add("МІСТА");
-            names.add("КРАЇНИ");
-            names.add("ФІЛЬМИ");
-            names.add("ЛЮДИ");
-            names.add("ІСТОРІЯ");
-            names.add("РОСЛИНИ");
-            adapter = new SetupCategoriesFragment.ImageAdapter(getContext(), names);
+            adapter = new SetupCategoriesFragment.ImageAdapter(getContext(),
+                    Vocabulary.getInstance().getCategories());
         }
         gridView = (GridView) getActivity().findViewById(R.id.grid);
         gridView.setAdapter(adapter);

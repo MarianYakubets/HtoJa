@@ -17,6 +17,8 @@ public class Storage {
     private static final String TEAM_SET = "TEAM_SET";
     private static final String TEAM = "team";
     private static final String ROUND = "round";
+    private static final String POINTER = "pointer";
+
 
 
     public static void saveCurrentTeamState(Context ctx) {
@@ -29,6 +31,7 @@ public class Storage {
             edit.putString(TEAM_SET, json);
             edit.putString(TEAM, manager.getCurrentTeam());
             edit.putInt(ROUND, manager.getRound());
+            edit.putInt(POINTER, manager.getRound());
             edit.apply();
         } else {
             preferences.edit().clear().apply();
@@ -43,8 +46,9 @@ public class Storage {
             TeamsSet set = gson.fromJson(json, TeamsSet.class);
             String team = preferences.getString(TEAM, "");
             int round = preferences.getInt(ROUND, 1);
+            int pointer = preferences.getInt(POINTER, 0);
             TeamGameManager manager = TeamGameManager.getInstance();
-            manager.startNewSet(set, team, round);
+            manager.startNewSet(set, team, round, pointer);
         }
     }
 }

@@ -6,11 +6,13 @@ import com.htoja.mifik.htoja.data.TeamsSet;
 import com.htoja.mifik.htoja.utils.Storage;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 public class TeamGameManager {
@@ -18,6 +20,7 @@ public class TeamGameManager {
     private TeamsSet currentSet;
     private String currentTeam;
     private int rounds = 1;
+    private int wordPointer;
 
     public static TeamGameManager getInstance() {
         return ourInstance;
@@ -26,14 +29,16 @@ public class TeamGameManager {
     private TeamGameManager() {
     }
 
-    public void startNewSet(List<String> teams, int targetWords, int seconds, boolean fine, List<String> categories) {
+    public void startNewSet(List<String> teams, int targetWords, int seconds, boolean fine,
+                            List<String> categories, List<String> words) {
         this.currentTeam = teams.get(0);
         LinkedHashMap<String, Integer> teamResults = new LinkedHashMap<>(teams.size());
         for (String team : teams) {
             teamResults.put(team, 0);
         }
-        this.currentSet = new TeamsSet(teamResults, teams, targetWords, seconds, fine, categories);
+        this.currentSet = new TeamsSet(teamResults, teams, targetWords, seconds, fine, categories, words);
         rounds = 1;
+        wordPointer = 0;
     }
 
     public String getCurrentTeam() {
@@ -113,14 +118,34 @@ public class TeamGameManager {
         return this.currentSet.getTeamResults();
     }
 
-    public void startNewSet(TeamsSet set, String currentTeam, int round) {
+    public void startNewSet(TeamsSet set, String currentTeam, int round, int pointer) {
         this.currentTeam = currentTeam;
         this.rounds = round;
         this.currentSet = set;
+        this.wordPointer = pointer;
+    }
+
+    public String nextWord() {
+        String s = this.currentSet.getWords().get(wordPointer);
+        wordPointer++;
+        if (this.currentSet.getWords().size() <= wordPointer) {
+            wordPointer = 0;
+            Collections.shuffle(this.currentSet.getWords(), new Random(System.nanoTime()));
+
+        }
+        return s;
     }
 
     public void end(Context ctx) {
         this.currentSet.setEnded(true);
         Storage.saveCurrentTeamState(ctx);
+    }
+
+    public List<String> getCategories() {
+        return this.currentSet.getCategories();
+    }
+
+    public List<String> getWords() {
+        return this.currentSet.getWords();
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class TeamsSet {
     private boolean fine;
     private final List<String> categories;
+    private final List<String> words;
     private List<String> teams;
     private LinkedHashMap<String, Integer> teamResults;
 
@@ -14,13 +15,15 @@ public class TeamsSet {
     private boolean ended = false;
     private String victorian;
 
-    public TeamsSet(LinkedHashMap<String, Integer> teamResults, List<String> teams, int pointsToWin, int roundTime, boolean fine, List<String> categories) {
+    public TeamsSet(LinkedHashMap<String, Integer> teamResults, List<String> teams, int pointsToWin,
+                    int roundTime, boolean fine, List<String> categories, List<String> words) {
         this.teamResults = teamResults;
         this.teams = teams;
         this.pointsToWin = pointsToWin;
         this.roundTime = roundTime;
         this.fine = fine;
         this.categories = categories;
+        this.words = words;
     }
 
     public int getPointsToWin() {
@@ -81,5 +84,9 @@ public class TeamsSet {
 
     public List<String> getCategories() {
         return categories;
+    }
+
+    public List<String> getWords() {
+        return words;
     }
 }

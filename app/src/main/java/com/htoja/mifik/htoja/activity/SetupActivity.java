@@ -11,12 +11,15 @@ import android.view.View;
 
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
+import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.fragment.NextTeamFragment;
 import com.htoja.mifik.htoja.fragment.SetupCategoriesFragment;
 import com.htoja.mifik.htoja.fragment.SetupSettingsFragment;
 import com.htoja.mifik.htoja.fragment.SetupTeamsFragment;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class SetupActivity extends AppCompatActivity {
 
@@ -59,7 +62,7 @@ public class SetupActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle(R.string.title_teams);
                 } else if (nextTeamFragment.isVisible()) {
                     getSupportActionBar().setTitle(R.string.title_menu);
-                }else if (setupCategoriesFragment.isVisible()) {
+                } else if (setupCategoriesFragment.isVisible()) {
                     getSupportActionBar().setTitle(R.string.title_options);
                 }
             }
@@ -98,8 +101,15 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     public void clickStart(View view) {
+        List<String> categories = setupCategoriesFragment.getCategories();
+        String[] arr = new String[categories.size()];
+        arr = categories.toArray(arr);
+        List<String> words = Vocabulary.getInstance().getWordsForCategories(arr);
+        Collections.shuffle(words, new Random(System.nanoTime()));
+
         TeamGameManager.getInstance().startNewSet(teams, setupSettingsFragment.getTargetWords(),
-                setupSettingsFragment.getSeconds(), setupSettingsFragment.getFine(), setupCategoriesFragment.getCategories());
+                setupSettingsFragment.getSeconds(), setupSettingsFragment.getFine(),
+                setupCategoriesFragment.getCategories(), words);
         TeamGameManager.getInstance().firstTeam();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, nextTeamFragment);
