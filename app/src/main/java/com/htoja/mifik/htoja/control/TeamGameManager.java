@@ -26,13 +26,13 @@ public class TeamGameManager {
     private TeamGameManager() {
     }
 
-    public void startNewSet(List<String> teams, int targetWords, int seconds, boolean fine) {
+    public void startNewSet(List<String> teams, int targetWords, int seconds, boolean fine, List<String> categories) {
         this.currentTeam = teams.get(0);
         LinkedHashMap<String, Integer> teamResults = new LinkedHashMap<>(teams.size());
         for (String team : teams) {
             teamResults.put(team, 0);
         }
-        this.currentSet = new TeamsSet(teamResults, teams, targetWords, seconds, fine);
+        this.currentSet = new TeamsSet(teamResults, teams, targetWords, seconds, fine, categories);
         rounds = 1;
     }
 

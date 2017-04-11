@@ -12,7 +12,7 @@ import android.view.View;
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
 import com.htoja.mifik.htoja.fragment.NextTeamFragment;
-import com.htoja.mifik.htoja.fragment.SetupGroupsFragment;
+import com.htoja.mifik.htoja.fragment.SetupCategoriesFragment;
 import com.htoja.mifik.htoja.fragment.SetupSettingsFragment;
 import com.htoja.mifik.htoja.fragment.SetupTeamsFragment;
 
@@ -23,7 +23,7 @@ public class SetupActivity extends AppCompatActivity {
     private SetupTeamsFragment setupTeamsFragment;
     private SetupSettingsFragment setupSettingsFragment;
     private NextTeamFragment nextTeamFragment;
-    private SetupGroupsFragment setupGroupsFragment;
+    private SetupCategoriesFragment setupCategoriesFragment;
     private List<String> teams;
 
     @Override
@@ -46,7 +46,7 @@ public class SetupActivity extends AppCompatActivity {
         setupTeamsFragment = new SetupTeamsFragment();
         setupSettingsFragment = new SetupSettingsFragment();
         nextTeamFragment = new NextTeamFragment();
-        setupGroupsFragment = new SetupGroupsFragment();
+        setupCategoriesFragment = new SetupCategoriesFragment();
 
         showTeamsFragment();
 
@@ -59,7 +59,7 @@ public class SetupActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle(R.string.title_teams);
                 } else if (nextTeamFragment.isVisible()) {
                     getSupportActionBar().setTitle(R.string.title_menu);
-                }else if (setupGroupsFragment.isVisible()) {
+                }else if (setupCategoriesFragment.isVisible()) {
                     getSupportActionBar().setTitle(R.string.title_options);
                 }
             }
@@ -83,7 +83,7 @@ public class SetupActivity extends AppCompatActivity {
 
     public void clickGroups(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, setupGroupsFragment);
+        transaction.replace(R.id.fragment_container, setupCategoriesFragment);
         transaction.addToBackStack("Групи");
         transaction.commit();
     }
@@ -99,7 +99,7 @@ public class SetupActivity extends AppCompatActivity {
 
     public void clickStart(View view) {
         TeamGameManager.getInstance().startNewSet(teams, setupSettingsFragment.getTargetWords(),
-                setupSettingsFragment.getSeconds(), setupSettingsFragment.getFine());
+                setupSettingsFragment.getSeconds(), setupSettingsFragment.getFine(), setupCategoriesFragment.getCategories());
         TeamGameManager.getInstance().firstTeam();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, nextTeamFragment);
