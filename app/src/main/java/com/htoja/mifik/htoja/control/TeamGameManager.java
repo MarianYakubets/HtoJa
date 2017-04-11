@@ -5,10 +5,7 @@ import android.content.Context;
 import com.htoja.mifik.htoja.data.TeamsSet;
 import com.htoja.mifik.htoja.utils.Storage;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -129,6 +126,8 @@ public class TeamGameManager {
         String s = this.currentSet.getWords().get(wordPointer);
         wordPointer++;
         if (this.currentSet.getWords().size() <= wordPointer) {
+            //this.currentSet.setEnded(true);
+
             wordPointer = 0;
             Collections.shuffle(this.currentSet.getWords(), new Random(System.nanoTime()));
 
@@ -147,5 +146,14 @@ public class TeamGameManager {
 
     public List<String> getWords() {
         return this.currentSet.getWords();
+    }
+
+
+    public List<String> getLeftWords() {
+        return this.currentSet.getWords().subList(wordPointer, this.currentSet.getWords().size() - 1);
+    }
+
+    public int getPointer() {
+        return this.wordPointer;
     }
 }

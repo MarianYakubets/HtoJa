@@ -31,7 +31,7 @@ public class Storage {
             edit.putString(TEAM_SET, json);
             edit.putString(TEAM, manager.getCurrentTeam());
             edit.putInt(ROUND, manager.getRound());
-            edit.putInt(POINTER, manager.getRound());
+            edit.putInt(POINTER, manager.getPointer());
             edit.apply();
         } else {
             preferences.edit().clear().apply();

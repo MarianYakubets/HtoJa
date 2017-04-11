@@ -49,7 +49,9 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         cardAdapter = new CardAdapter(this);
-        cardAdapter.addAll(TeamGameManager.getInstance().getWords());
+        TeamGameManager.getInstance().nextWord();
+        cardAdapter.addAll(TeamGameManager.getInstance().getLeftWords());
+
 
         cardStackView = (CardStackView) findViewById(R.id.csvWord);
         cardStackView.setAdapter(cardAdapter);
