@@ -1,12 +1,16 @@
 package com.htoja.mifik.htoja.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -46,14 +50,26 @@ public class SetupGroupsFragment extends Fragment {
         }
         gridView = (GridView) getActivity().findViewById(R.id.grid);
         gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = adapter.getItem(position);
+                if (adapter.isSelected(position)) {
+                    adapter.selected.remove(item);
+                } else {
+                    adapter.selected.add(item);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
-
-    public class ImageAdapter extends BaseAdapter {
+    private class ImageAdapter extends BaseAdapter {
         private final LayoutInflater layoutInflater;
         private List<String> groups;
+        private List<String> selected = new ArrayList<>();
 
-        public ImageAdapter(Context c, List<String> groups) {
+        ImageAdapter(Context c, List<String> groups) {
             this.groups = groups;
             layoutInflater = LayoutInflater.from(c);
         }
@@ -62,19 +78,26 @@ public class SetupGroupsFragment extends Fragment {
             return groups.size();
         }
 
-        public Object getItem(int position) {
-            return null;
+        public String getItem(int position) {
+            return groups.get(position);
         }
 
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = layoutInflater.inflate(R.layout.group_item, null);
             SquareTextView txt = (SquareTextView) convertView.findViewById(R.id.tv_name);
             txt.setText(groups.get(position));
+            if (isSelected(position)) {
+                convertView.setBackground(getActivity().getResources().getDrawable(R.drawable.group_card_selected));
+            }
             return convertView;
+        }
+
+        boolean isSelected(int position) {
+            return selected.contains(adapter.getItem(position));
         }
     }
 }
