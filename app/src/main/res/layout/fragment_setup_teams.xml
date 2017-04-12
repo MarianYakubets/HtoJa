@@ -2,7 +2,6 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
     android:label="@string/title_teams">
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +10,6 @@
         android:id="@+id/activity_game"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary"
         tools:context="com.htoja.mifik.htoja.activity.SetupActivity">
 
         <LinearLayout
@@ -40,8 +38,8 @@
                 android:id="@+id/viewB"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:background="@color/primary_dark"
+                android:layout_weight="1.3"
+                android:background="@color/primary"
                 android:orientation="vertical">
             </RelativeLayout>
         </LinearLayout>
