@@ -1,6 +1,7 @@
 package com.htoja.mifik.htoja.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +19,11 @@ import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.view.SquareTextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mi on 3/2/2017.
@@ -28,6 +33,9 @@ public class SetupCategoriesFragment extends Fragment {
     private ImageAdapter adapter;
     private Button btn;
 
+    private LinkedList<String> colors = new LinkedList<>(Arrays.asList("#E57373", "#F44336", "#3F51B5", "#3F51B5",
+            "#009688", "#009688", "#8BC34A", "#CDDC39", "#CDDC39", "#FFC107", "#FF9800", "#E65100", "#FF5722", "#607D8B"));
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle bundle) {
@@ -36,6 +44,7 @@ public class SetupCategoriesFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Collections.shuffle(colors, new Random(System.nanoTime()));
         if (adapter == null) {
             adapter = new SetupCategoriesFragment.ImageAdapter(getContext(),
                     Vocabulary.getInstance().getCategories());
@@ -99,8 +108,9 @@ public class SetupCategoriesFragment extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = layoutInflater.inflate(R.layout.group_item, null);
             SquareTextView txt = (SquareTextView) convertView.findViewById(R.id.tv_name);
+            txt.setBackgroundColor(Color.parseColor(colors.get(position)));
             String name = categories.get(position);
-            txt.setText(name + "\n" + String.valueOf(Vocabulary.getInstance().getSizeOfCategory(name)));
+            txt.setText(name.toUpperCase() + "\n\n" + String.valueOf(Vocabulary.getInstance().getSizeOfCategory(name)));
             if (isSelected(position)) {
                 convertView.setBackground(getActivity().getResources().getDrawable(R.drawable.group_card_selected));
             }

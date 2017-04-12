@@ -33,7 +33,7 @@ public class SetupTeamsFragment extends Fragment {
             "чорні", "білі", "коричневі", "зелені", "малинові",
             "салатові", "кремові", "помаранчеві", "сірі", "оливкові"));
 
-    private LinkedList<String> creatures = new LinkedList<>(Arrays.asList("гнови", "ельфи", "монголи", "вікінги", "вампіри",
+    private LinkedList<String> creatures = new LinkedList<>(Arrays.asList("гноми", "ельфи", "монголи", "вікінги", "вампіри",
             "динозаври", "репери", "блогери", "інженери", "термінатори",
             "поні", "індіанці", "санти", "монахи", "гопніки"));
     private final String SPACE = " ";

@@ -42,7 +42,7 @@
                 android:left="7dp"
                 android:right="7dp"
                 android:top="7dp" />
-            <solid android:color="@color/primary_text" />
+            <solid android:color="@color/card_background" />
             <corners android:radius="4dp" />
         </shape>
     </item>
