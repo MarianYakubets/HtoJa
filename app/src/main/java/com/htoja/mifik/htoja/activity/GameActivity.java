@@ -2,8 +2,10 @@ package com.htoja.mifik.htoja.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
@@ -35,6 +37,8 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
     private int seconds;
     private CardAdapter cardAdapter;
     private CardStackView cardStackView;
+    private FloatingActionButton pauseBtn;
+    private boolean paused = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,24 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
         seconds = TeamGameManager.getInstance().getRoundTime();
 
         startTimer();
+
+        pauseBtn = (FloatingActionButton) findViewById(R.id.fab_pause);
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (paused) {
+                    paused = false;
+                    pauseBtn.setImageResource(R.drawable.ic_media_pause);
+                    startTimer();
+                } else {
+                    paused = true;
+                    pauseBtn.setImageResource(R.drawable.ic_media_play);
+                    timer.cancel();
+                }
+
+                cardStackView.setSwipeEnabled(!paused);
+            }
+        });
     }
 
     @Override
@@ -82,7 +104,9 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
         final TextView timerView = (TextView) findViewById(R.id.tvTimer);
         timer = new CountDownTimer(seconds * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
-                timerView.setText(new SimpleDateFormat("mm:ss").format(new Date(millisUntilFinished)));
+                Date date = new Date(millisUntilFinished);
+                seconds = date.getMinutes() * 60 + date.getSeconds();
+                timerView.setText(new SimpleDateFormat("mm:ss").format(date));
             }
 
             public void onFinish() {

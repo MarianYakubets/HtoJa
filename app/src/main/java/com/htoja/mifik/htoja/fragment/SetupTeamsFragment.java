@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
@@ -18,14 +19,24 @@ import com.htoja.mifik.htoja.control.TeamGameManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mi on 3/2/2017.
  */
 public class SetupTeamsFragment extends Fragment {
-    private ListView listView;
     private SetupTeamsFragment.ListAdapter adapter;
+
+    private LinkedList<String> colors = new LinkedList<>(Arrays.asList("сині", "фіолетові", "рожеві", "червоні", "жовті",
+            "чорні", "білі", "коричневі", "зелені", "малинові",
+            "салатові", "кремові", "помаранчеві", "сірі", "оливкові"));
+
+    private LinkedList<String> creatures = new LinkedList<>(Arrays.asList("гнови", "ельфи", "монголи", "вікінги", "вампіри",
+            "динозаври", "репери", "блогери", "інженери", "термінатори",
+            "поні", "індіанці", "санти", "монахи", "гопніки"));
+    private final String SPACE = " ";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,18 +46,33 @@ public class SetupTeamsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Collections.shuffle(colors, new Random(System.nanoTime()));
+        Collections.shuffle(creatures, new Random(System.nanoTime()));
         if (adapter == null) {
-            List<String> names = new ArrayList<>(2);
-            names.add("КОМАНДА 1");
-            names.add("КОМАНДА 2");
+            List<String> names = new ArrayList<>();
             adapter = new SetupTeamsFragment.ListAdapter(getContext(), R.layout.team_item, names);
+            clickAdd(null);
+            clickAdd(null);
         }
-        listView = (ListView) getActivity().findViewById(R.id.list);
+        ListView listView = (ListView) getActivity().findViewById(R.id.list);
         listView.setAdapter(adapter);
     }
 
+    @Override
+    public void onStart() {
+        if (getView() != null) {
+            adapter.notifyDataSetChanged();
+            getView().requestLayout();
+        }
+        super.onStart();
+    }
+
     public void clickAdd(View view) {
-        adapter.add("КОМАНДА " + (adapter.getCount() + 1));
+        if (adapter.getCount() == 15) {
+            Toast.makeText(getContext(), "Максимум 15 команд", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        adapter.add(colors.poll() + SPACE + creatures.poll());
     }
 
     public List<String> getTeams() {
@@ -89,8 +115,16 @@ public class SetupTeamsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (data.size() > 2) {
+                        String string = data.get(position);
+                        String[] split = string.split(SPACE);
+
+                        colors.addLast(split[0]);
+                        creatures.addLast(split[1]);
+
                         data.remove(position);
                         notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(getContext(), "Мінімум 2 команди", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
