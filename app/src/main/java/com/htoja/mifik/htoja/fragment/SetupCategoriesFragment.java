@@ -1,6 +1,7 @@
 package com.htoja.mifik.htoja.fragment;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,16 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 
 import com.htoja.mifik.htoja.R;
-import com.htoja.mifik.htoja.control.TeamGameManager;
 import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.view.SquareTextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ForkJoinPool;
 
 /**
  * Created by mi on 3/2/2017.
@@ -26,6 +26,7 @@ import java.util.concurrent.ForkJoinPool;
 public class SetupCategoriesFragment extends Fragment {
     private GridView gridView;
     private ImageAdapter adapter;
+    private Button btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +41,9 @@ public class SetupCategoriesFragment extends Fragment {
                     Vocabulary.getInstance().getCategories());
         }
         gridView = (GridView) getActivity().findViewById(R.id.grid);
+        btn = (Button) getActivity().findViewById(R.id.btNext);
+        updatePlayBtn();
+
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -51,8 +55,19 @@ public class SetupCategoriesFragment extends Fragment {
                     adapter.selected.add(item);
                 }
                 adapter.notifyDataSetChanged();
+                updatePlayBtn();
             }
         });
+    }
+
+    private void updatePlayBtn() {
+        if (adapter.selected.size() > 0) {
+            btn.setClickable(true);
+            btn.setVisibility(View.VISIBLE);
+        } else {
+            btn.setClickable(false);
+            btn.setVisibility(View.GONE);
+        }
     }
 
     public List<String> getCategories() {

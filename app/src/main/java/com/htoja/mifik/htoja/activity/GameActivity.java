@@ -121,7 +121,7 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
     @Override
     public void onEndSwipe(Direction direction) {
         CardView card = (CardView) cardStackView.getTopView().findViewById(R.id.cvTop);
-        card.setCardBackgroundColor(Color.WHITE);
+        card.setCardBackgroundColor(getResources().getColor(R.color.primary_light));
     }
 
     @Override
