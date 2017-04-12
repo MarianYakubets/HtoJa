@@ -12,11 +12,13 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 
 import com.htoja.mifik.htoja.R;
+import com.htoja.mifik.htoja.control.TeamGameManager;
 import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.view.SquareTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  * Created by mi on 3/2/2017.
@@ -82,7 +84,8 @@ public class SetupCategoriesFragment extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = layoutInflater.inflate(R.layout.group_item, null);
             SquareTextView txt = (SquareTextView) convertView.findViewById(R.id.tv_name);
-            txt.setText(categories.get(position));
+            String name = categories.get(position);
+            txt.setText(name + "\n" + String.valueOf(Vocabulary.getInstance().getSizeOfCategory(name)));
             if (isSelected(position)) {
                 convertView.setBackground(getActivity().getResources().getDrawable(R.drawable.group_card_selected));
             }

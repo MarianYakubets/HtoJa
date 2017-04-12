@@ -78,6 +78,10 @@ public class Vocabulary {
         return list;
     }
 
+    public int getSizeOfCategory(String name) {
+        return categories.get(name).size();
+    }
+
 
     private class Category {
         @SerializedName("name")
