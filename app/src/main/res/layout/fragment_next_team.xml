@@ -2,7 +2,6 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
     android:label="@string/next">
 
 
@@ -93,6 +92,7 @@
                     android:enabled="true"
                     android:gravity="center"
                     android:onClick="clickPlay"
+                    android:background="@color/primary"
                     android:text="@string/play"
                     android:textSize="14pt"
                     app:layout_anchor="@id/viewB"

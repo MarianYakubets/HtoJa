@@ -44,7 +44,14 @@ public class RoundResultFragment extends Fragment {
         tvName.setText(sb.toString());
 
         if (correct != null && skip != null) {
-            tvResult.setText(String.valueOf(result) + "\n БАЛІВ");
+            String points = String.valueOf(result);
+            if (points.endsWith("1") && points.length() != 2) {
+                tvResult.setText(points + "\n бал");
+            } else if ((points.endsWith("2") || points.endsWith("3") || points.endsWith("4")) && points.length() != 2) {
+                tvResult.setText(points + "\n бали");
+            } else {
+                tvResult.setText(points + "\n балів");
+            }
         }
 
         super.onViewCreated(view, savedInstanceState);
