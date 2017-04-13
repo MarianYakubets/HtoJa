@@ -15,6 +15,6 @@
         android:gravity="center"
         android:text="ГРУПА"
         android:textColor="@color/card_background"
-        android:textSize="12pt" />
+        android:textSize="@dimen/text_medium" />
 
 </RelativeLayout>

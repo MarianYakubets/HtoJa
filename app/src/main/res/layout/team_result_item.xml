@@ -6,26 +6,33 @@
     android:layout_height="match_parent"
     android:background="@color/primary_light"
     android:paddingBottom="2dp"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:paddingTop="2dp"
-    tools:context="com.htoja.mifik.htoja.activity.ResultActivity">
+    tools:context="com.htoja.mifik.htoja.activity.SetupActivity">
 
     <TextView
         android:id="@+id/tvTeamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12pt"
-        android:gravity="center"
-        android:layout_alignParentLeft="true" />
+        android:textSize="@dimen/text_medium"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:text="@string/action_settings"
+        android:textColor="@color/primary_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/childButton"
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14pt"
-        android:textColor="@color/secondary_text"
-        android:gravity="center"
+        android:textSize="@dimen/text_medium"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:text="@string/action_settings"
+        android:textColor="@color/bright_text"
         android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

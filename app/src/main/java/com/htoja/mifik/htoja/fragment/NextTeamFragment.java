@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,7 +96,7 @@ public class NextTeamFragment extends Fragment {
             viewHolder.text.setText(team);
 
             Integer result = TeamGameManager.getInstance().getTeamResults().get(team);
-            viewHolder.result.setText(result.toString());
+            viewHolder.result.setText(Html.fromHtml("<u>" + result.toString() + "</u>"));
 
             return convertView;
         }

@@ -3,6 +3,7 @@ package com.htoja.mifik.htoja.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,16 +29,16 @@ public class SetupSettingsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_setup_settings, container, false);
     }
 
-    public int getTargetWords(){
+    public int getTargetWords() {
         return Integer.valueOf(tvWords.getText().toString());
     }
 
 
-    public int getSeconds(){
+    public int getSeconds() {
         return Integer.valueOf(tvSeconds.getText().toString());
     }
 
-    public boolean getFine(){
+    public boolean getFine() {
         return swFine.isChecked();
     }
 
@@ -50,7 +51,7 @@ public class SetupSettingsFragment extends Fragment {
         sbWords.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvWords.setText(String.valueOf(i + MIN_WORDS));
+                tvWords.setText(Html.fromHtml("<u>" + String.valueOf(i + MIN_WORDS) + "</u>"));
             }
 
             @Override
@@ -67,7 +68,7 @@ public class SetupSettingsFragment extends Fragment {
         sbSeconds.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvSeconds.setText(String.valueOf(i + MIN_SECONDS));
+                tvSeconds.setText(Html.fromHtml("<u>" + String.valueOf(i + MIN_SECONDS) + "</u>"));
             }
 
             @Override

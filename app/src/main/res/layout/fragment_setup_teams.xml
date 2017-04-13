@@ -53,22 +53,22 @@
             android:onClick="clickAdd"
             app:layout_anchor="@id/viewB"
             app:layout_anchorGravity="top|right"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@drawable/ic_add_white_24dp" />
 
         <Button
             android:id="@+id/btNext"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/btn_width"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             app:layout_anchorGravity="center|bottom"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:enabled="true"
             android:gravity="center"
+            android:background="@color/accent"
             android:onClick="clickOptions"
+            android:textAllCaps="false"
             android:text="@string/next"
-            android:textSize="14pt"
+            android:textSize="@dimen/text_medium"
             app:layout_anchor="@id/viewB" />
 
     </android.support.design.widget.CoordinatorLayout>

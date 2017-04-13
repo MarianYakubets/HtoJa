@@ -29,9 +29,9 @@ import java.util.Random;
 public class SetupTeamsFragment extends Fragment {
     private SetupTeamsFragment.ListAdapter adapter;
 
-    private LinkedList<String> colors = new LinkedList<>(Arrays.asList("сині", "фіолетові", "рожеві", "червоні", "жовті",
-            "чорні", "білі", "коричневі", "зелені", "малинові",
-            "салатові", "кремові", "помаранчеві", "сірі", "оливкові"));
+    private LinkedList<String> colors = new LinkedList<>(Arrays.asList("Cині", "Фіолетові", "Рожеві", "Червоні", "Жовті",
+            "Чорні", "Білі", "Коричневі", "Зелені", "Малинові",
+            "Салатові", "Кремові", "Помаранчеві", "Сірі", "Оливкові"));
 
     private LinkedList<String> creatures = new LinkedList<>(Arrays.asList("гноми", "ельфи", "монголи", "вікінги", "вампіри",
             "динозаври", "репери", "блогери", "інженери", "термінатори",

@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">HtoJa</string>
-    <string name="single">ГРАТИ</string>
-    <string name="multiple">КОМАНДИ</string>
+    <string name="single">Грати</string>
+    <string name="multiple">Команди</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">WORD %1$d</string>
     <string name="_01_00">01:00</string>
-    <string name="next">ДАЛІ</string>
-    <string name="play">ГРАТИ</string>
+    <string name="next">Далі</string>
+    <string name="play">Грати</string>
     <string name="title_activity_teams">Teams</string>
     <string name="title_teams">Команди</string>
     <string name="title_options">Опції</string>
@@ -90,6 +90,6 @@
     <string name="number_words">Кількість слів</string>
     <string name="seconds_round">Час раунду</string>
     <string name="fine">Штраф за пропуск</string>
-    <string name="goon">ПРОДОВЖИТИ</string>
+    <string name="goon">Продовжити</string>
     <string name="new_game">Нова Гра</string>
 </resources>

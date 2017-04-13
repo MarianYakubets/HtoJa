@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="14pt"
+        android:textSize="@dimen/text_big"
         android:text="Right"
         android:layout_gravity="left"
         android:alpha="0"/>
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_green_dark"
-        android:textSize="14pt"
+        android:textSize="@dimen/text_big"
         android:text="Left"
         android:layout_gravity="right"
         android:alpha="0"/>
@@ -33,7 +33,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary_text"
-        android:textSize="16pt"
+        android:textSize="@dimen/text_big"
+        android:textAlignment="center"
+        android:layout_margin="5dp"
         android:layout_gravity="center"/>
 
 </android.support.v7.widget.CardView>
