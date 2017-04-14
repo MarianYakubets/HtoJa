@@ -96,7 +96,7 @@ public class NextTeamFragment extends Fragment {
             viewHolder.text.setText(team);
 
             Integer result = TeamGameManager.getInstance().getTeamResults().get(team);
-            viewHolder.result.setText(Html.fromHtml("<u>" + result.toString() + "</u>"));
+            viewHolder.result.setText(result.toString());
 
             return convertView;
         }

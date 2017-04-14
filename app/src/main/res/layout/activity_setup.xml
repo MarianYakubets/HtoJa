@@ -5,7 +5,7 @@
     android:id="@+id/activity_setup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@drawable/ic_pattern"
     android:orientation="vertical"
     tools:context="com.htoja.mifik.htoja.activity.SetupActivity">
 
@@ -21,7 +21,6 @@
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/pattern1"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
