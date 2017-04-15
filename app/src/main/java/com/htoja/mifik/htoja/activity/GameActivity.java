@@ -87,8 +87,9 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
     @Override
     protected void onPause() {
         super.onPause();
-        timer.cancel();
-    }
+        paused = true;
+        pauseBtn.setImageResource(R.drawable.ic_media_play);
+        timer.cancel();    }
 
     public void clickYes(int index) {
         correct.add(cardAdapter.getItem(index));

@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textColor="@color/accent"
-                android:text="10"
+                android:text="60"
                 android:textSize="@dimen/text_big"
                 app:layout_anchor="@id/rlSeconds"
                 android:layout_alignParentTop="true"
@@ -92,7 +92,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_alignParentEnd="true"
                 android:max="100"
-                android:progress="0"/>
+                android:progress="50"/>
         </RelativeLayout>
 
         <View

@@ -37,10 +37,10 @@ public class NextTeamFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView target = (TextView) getActivity().findViewById(R.id.tvTargetPoints);
-        target.setText("Ціль: " + TeamGameManager.getInstance().getPointsToWin());
+        target.setText(" " + String.valueOf(TeamGameManager.getInstance().getPointsToWin()));
 
-        TextView round = (TextView) getActivity().findViewById(R.id.tvRound);
-        round.setText("Раунд: " + TeamGameManager.getInstance().getRound());
+        TextView round = (TextView) getActivity().findViewById(R.id.tvRoundCount);
+        round.setText(" " + String.valueOf(TeamGameManager.getInstance().getRound()));
 
         listView = (ListView) getActivity().findViewById(R.id.list);
         adapter = new NextTeamFragment.ListAdapter(getContext(), R.layout.team_result_item, new ArrayList<String>());
@@ -52,7 +52,7 @@ public class NextTeamFragment extends Fragment {
         if (TeamGameManager.getInstance().hasEnded()) {
             showEndedMessage();
         } else {
-            resultView.setText("ДАЛІ: \n" + TeamGameManager.getInstance().getCurrentTeam());
+            resultView.setText(TeamGameManager.getInstance().getCurrentTeam());
         }
     }
 

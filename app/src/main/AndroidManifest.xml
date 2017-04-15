@@ -28,7 +28,7 @@
         <activity
             android:name=".activity.GameActivity"
             android:label="@string/title_menu"
-            android:noHistory="true"
+            android:noHistory="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

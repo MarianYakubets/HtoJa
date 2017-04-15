@@ -32,25 +32,24 @@ public class RoundResultFragment extends Fragment {
         ArrayList<String> correct = bundle.getStringArrayList(GameActivity.CORRECT);
         String team = bundle.getString(GameActivity.TEAM);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Кінець раунду: \n" + team);
-
         int result = correct.size();
         if (TeamGameManager.getInstance().hasFine()) {
             result -= skip.size();
         }
         TextView tvName = (TextView) view.findViewById(R.id.tvName);
         TextView tvResult = (TextView) view.findViewById(R.id.tvResult);
-        tvName.setText(sb.toString());
+        TextView tvResultPoints = (TextView) view.findViewById(R.id.tvResultName);
+        tvName.setText(team);
 
-        if (correct != null && skip != null) {
+        if (skip != null) {
             String points = String.valueOf(result);
+            tvResult.setText(points);
             if (points.endsWith("1") && points.length() != 2) {
-                tvResult.setText(points + "\n бал");
+                tvResultPoints.setText("бал");
             } else if ((points.endsWith("2") || points.endsWith("3") || points.endsWith("4")) && points.length() != 2) {
-                tvResult.setText(points + "\n бали");
+                tvResultPoints.setText("бали");
             } else {
-                tvResult.setText(points + "\n балів");
+                tvResultPoints.setText("балів");
             }
         }
 

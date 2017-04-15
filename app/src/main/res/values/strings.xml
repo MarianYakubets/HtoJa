@@ -87,9 +87,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="number_words">Кількість слів</string>
+    <string name="number_words">Балів для перемоги</string>
     <string name="seconds_round">Час раунду</string>
-    <string name="fine">Штраф за пропуск</string>
+    <string name="fine">\'-1\' бал за пропуск</string>
     <string name="goon">Продовжити</string>
     <string name="new_game">Нова Гра</string>
+    <string name="round_end">Кінець раунду: </string>
+    <string name="next_team">Наступна команда: </string>
+    <string name="round">Раунд:</string>
+    <string name="aim">Балів для перемоги:</string>
 </resources>
