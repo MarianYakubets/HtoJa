@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HtoJa</string>
+    <string name="app_name">Яке слово?</string>
     <string name="single">Грати</string>
     <string name="multiple">Команди</string>
     <string name="title_activity_game">GameActivity</string>
@@ -87,9 +87,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="number_words">Балів для перемоги</string>
+    <string name="number_words">Для перемоги</string>
     <string name="seconds_round">Час раунду</string>
-    <string name="fine">\'-1\' бал за пропуск</string>
+    <string name="fine">Мінус бал за пропуск</string>
     <string name="goon">Продовжити</string>
     <string name="new_game">Нова Гра</string>
     <string name="round_end">Кінець раунду: </string>
