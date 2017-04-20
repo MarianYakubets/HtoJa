@@ -174,11 +174,39 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
         } else {
             clickNo(index);
         }
+        CardView card = (CardView) cardStackView.getTopView().findViewById(R.id.cvTop);
+        card.setCardBackgroundColor(getResources().getColor(R.color.primary_light));
     }
 
     @Override
     public void onTapUp(int index) {
         timer.cancel();
         timer.start();
+    }
+
+    public void clickYes(View view) {
+        if (paused)
+            return;
+
+        CardView card = (CardView) cardStackView.getTopView().findViewById(R.id.cvTop);
+        card.setCardBackgroundColor(Color.parseColor("#38654B"));
+
+        cardStackView.discard(Direction.TopRight);
+    }
+
+    public void clickNo(View view) {
+        if (paused)
+            return;
+
+        final CardView card = (CardView) cardStackView.getTopView().findViewById(R.id.cvTop);
+        card.setCardBackgroundColor(Color.parseColor("#a12323"));
+
+        cardStackView.discard(Direction.BottomLeft);
+        card.post(new Runnable() {
+            @Override
+            public void run() {
+                card.setCardBackgroundColor(getResources().getColor(R.color.primary_light));
+            }
+        });
     }
 }
