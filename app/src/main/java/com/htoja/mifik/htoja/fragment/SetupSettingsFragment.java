@@ -51,7 +51,10 @@ public class SetupSettingsFragment extends Fragment {
         sbWords.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvWords.setText(String.valueOf(i + MIN_WORDS));
+                i = i + MIN_WORDS;
+                i = i / 5;
+                i = i * 5;
+                tvWords.setText(String.valueOf(i));
             }
 
             @Override
@@ -68,7 +71,10 @@ public class SetupSettingsFragment extends Fragment {
         sbSeconds.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvSeconds.setText(String.valueOf(i + MIN_SECONDS));
+                i = i + MIN_SECONDS;
+                i = i / 10;
+                i = i * 10;
+                tvSeconds.setText(String.valueOf(i));
             }
 
             @Override

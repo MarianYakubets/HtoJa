@@ -1,10 +1,12 @@
 package com.htoja.mifik.htoja.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -89,7 +91,8 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
         super.onPause();
         paused = true;
         pauseBtn.setImageResource(R.drawable.ic_media_play);
-        timer.cancel();    }
+        timer.cancel();
+    }
 
     public void clickYes(int index) {
         correct.add(cardAdapter.getItem(index));
@@ -106,6 +109,11 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
         timer = new CountDownTimer(seconds * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
                 Date date = new Date(millisUntilFinished);
+                if (seconds == 6) {
+                    timerView.setTextColor(Color.RED);
+                    Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vib.vibrate(500);
+                }
                 seconds = date.getMinutes() * 60 + date.getSeconds();
                 timerView.setText(new SimpleDateFormat("mm:ss").format(date));
             }

@@ -47,7 +47,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_alignParentEnd="true"
-                android:max="190"
+                android:max="90"
                 android:progress="30"/>
         </RelativeLayout>
 

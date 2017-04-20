@@ -10,12 +10,13 @@
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/csvWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="80dp"
-        android:paddingBottom="50dp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
+        android:layout_width="550dp"
+        android:layout_height="550dp"
+        android:paddingTop="180dp"
+        android:paddingBottom="100dp"
+        android:paddingRight="60dp"
+        android:paddingLeft="60dp"
+        android:gravity="center_vertical|center_horizontal"
         android:clipChildren="false"
         android:background="@color/primary"
         android:clipToPadding="false"/>
@@ -30,10 +31,10 @@
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:text="@string/_01_00"
         android:textColor="@color/primary_text"
-        android:textSize="@dimen/text_medium" />
+        android:textSize="@dimen/text_extra_big" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_pause"
@@ -45,10 +46,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:gravity="start|center"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp"
         app:srcCompat="@android:drawable/ic_media_pause" />
 
 </RelativeLayout>

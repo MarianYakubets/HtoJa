@@ -25,40 +25,44 @@
                     android:id="@+id/tvRound"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textEnd"
+                    android:layout_height="match_parent"
+                    android:textAlignment="gravity"
+                    android:gravity="end|center_vertical"
                     android:text="@string/round"
                     android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/text_medium" />
+                    android:textSize="@dimen/text_small" />
                 <TextView
                     android:id="@+id/tvRoundCount"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="textStart"
+                    android:textAlignment="gravity"
+                    android:gravity="start|center_vertical"
                     android:textColor="@color/primary_text"
                     android:text="3"
-                    android:textSize="@dimen/text_big" />
+                    android:textSize="@dimen/text_medium" />
 
                 <TextView
                     android:id="@+id/tvTarget"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textEnd"
+                    android:layout_height="match_parent"
+                    android:textAlignment="gravity"
+                    android:gravity="end|center_vertical"
                     android:text="@string/aim"
                     android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/text_medium" />
+                    android:textSize="@dimen/text_small" />
 
                 <TextView
                     android:id="@+id/tvTargetPoints"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="textStart"
+                    android:textAlignment="gravity"
+                    android:gravity="start|center_vertical"
                     android:text="20"
                     android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_big" />
+                    android:textSize="@dimen/text_medium" />
 
 
             </LinearLayout>
@@ -97,7 +101,7 @@
                     android:textAlignment="center"
                     android:text="@string/next_team"
                     android:textSize="@dimen/text_medium"
-                    android:paddingTop="15dp"
+                    android:paddingTop="10dp"
                     app:layout_anchor="@id/viewB"
                     app:layout_anchorGravity="top|center"
                     android:layout_alignParentTop="true"
