@@ -3,9 +3,11 @@ package com.htoja.mifik.htoja.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
@@ -13,6 +15,10 @@ import com.htoja.mifik.htoja.data.Vocabulary;
 import com.htoja.mifik.htoja.utils.Storage;
 
 public class MainActivity extends AppCompatActivity {
+
+    private boolean pressed = false;
+    final Handler handler = new Handler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +74,22 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Intent i = new Intent(getApplicationContext(), SetupActivity.class);
             startActivity(i);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!pressed) {
+            pressed = true;
+            Toast.makeText(this, getString(R.string.press_again), Toast.LENGTH_SHORT).show();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    pressed = false;
+                }
+            }, 2000);
+        } else {
+            super.onBackPressed();
         }
     }
 }

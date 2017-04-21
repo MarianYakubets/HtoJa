@@ -97,4 +97,5 @@
     <string name="round">Раунд:</string>
     <string name="aim">Балів для перемоги:</string>
     <string name="winner">Переможець:</string>
+    <string name="press_again">Натисніть ще раз, щоб вийти</string>
 </resources>
