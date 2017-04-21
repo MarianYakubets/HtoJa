@@ -96,4 +96,5 @@
     <string name="next_team">Наступна команда: </string>
     <string name="round">Раунд:</string>
     <string name="aim">Балів для перемоги:</string>
+    <string name="winner">Переможець:</string>
 </resources>

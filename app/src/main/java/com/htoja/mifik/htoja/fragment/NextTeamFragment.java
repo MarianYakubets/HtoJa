@@ -1,10 +1,10 @@
 package com.htoja.mifik.htoja.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +25,7 @@ import java.util.List;
 public class NextTeamFragment extends Fragment {
     private ListView listView;
     private NextTeamFragment.ListAdapter adapter;
-    private TextView resultView;
+    private TextView team;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,19 +45,23 @@ public class NextTeamFragment extends Fragment {
         listView = (ListView) getActivity().findViewById(R.id.list);
         adapter = new NextTeamFragment.ListAdapter(getContext(), R.layout.team_result_item, new ArrayList<String>());
         listView.setAdapter(adapter);
-        resultView = (TextView) view.findViewById(R.id.tvNextName);
+        team = (TextView) view.findViewById(R.id.tvNextName);
 
         adapter.addAll(TeamGameManager.getInstance().getTeamResults().keySet());
 
         if (TeamGameManager.getInstance().hasEnded()) {
             showEndedMessage();
         } else {
-            resultView.setText(TeamGameManager.getInstance().getCurrentTeam());
+            team.setText(TeamGameManager.getInstance().getCurrentTeam());
         }
     }
 
     private void showEndedMessage() {
-        resultView.setText("Переможець: \n" + TeamGameManager.getInstance().getVictorian());
+        team.setText(TeamGameManager.getInstance().getVictorian());
+
+        TextView header = (TextView) getView().findViewById(R.id.tvNextHeader);
+        header.setText(getActivity().getString(R.string.winner));
+
         Button btn = (Button) getActivity().findViewById(R.id.btPlay);
         btn.setText(getActivity().getText(R.string.title_menu));
     }
