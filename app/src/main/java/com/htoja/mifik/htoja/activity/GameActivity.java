@@ -28,6 +28,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import static com.htoja.mifik.htoja.R.drawable.card;
+
 public class GameActivity extends AppCompatActivity implements CardStackView.CardStackEventListener {
     public static final String CORRECT = "correct";
     public static final String SKIP = "skip";
@@ -188,10 +190,17 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
         if (paused)
             return;
 
-        CardView card = (CardView) cardStackView.getTopView().findViewById(R.id.cvTop);
+        final CardView card = (CardView) cardStackView.getTopView().findViewById(R.id.cvTop);
         card.setCardBackgroundColor(Color.parseColor("#38654B"));
 
         cardStackView.discard(Direction.TopRight);
+
+        cardStackView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                card.setCardBackgroundColor(getResources().getColor(R.color.primary_light));
+            }
+        }, 100);
     }
 
     public void clickNo(View view) {
@@ -202,11 +211,12 @@ public class GameActivity extends AppCompatActivity implements CardStackView.Car
         card.setCardBackgroundColor(Color.parseColor("#a12323"));
 
         cardStackView.discard(Direction.BottomLeft);
-        card.post(new Runnable() {
+
+        cardStackView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 card.setCardBackgroundColor(getResources().getColor(R.color.primary_light));
             }
-        });
+        }, 100);
     }
 }
