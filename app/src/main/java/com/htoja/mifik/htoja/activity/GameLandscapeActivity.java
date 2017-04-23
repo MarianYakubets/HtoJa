@@ -104,21 +104,23 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
                     @Override
                     public void run() {
                         currentOrientationProvider.getQuaternion(quaternion);
-˚
+
                         double[] angles = quaternion.toEulerAngles();
                         double yaw = Math.toDegrees(angles[0]);
-                        double pitch = Math.toDegrees(angles[1]);
-                        double roll = Math.toDegrees(angles[2]);
+                        double roll = Math.toDegrees(angles[1]);
+                        double pitch = Math.toDegrees(angles[2]);
 
                         if (counter >= START_COUNT) {
 
+
+                            return;
                         }
 
                         if (80 < Math.abs(yaw) && Math.abs(yaw) < 100
                                 && (Math.abs(pitch) < 10
                                 || 170 < Math.abs(pitch))) {
                             counter++;
-                            if (counter == 10) {
+                            if (counter == START_COUNT) {
                                 Toast.makeText(getBaseContext(), "Стартували", Toast.LENGTH_SHORT).show();
                                 startTimer();
                             }
