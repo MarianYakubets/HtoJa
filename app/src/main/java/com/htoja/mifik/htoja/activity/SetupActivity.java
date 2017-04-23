@@ -92,7 +92,7 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     public void clickPlay(View view) {
-        Intent i = new Intent(this, GameActivity.class);
+        Intent i = new Intent(this, GameLandscapeActivity.class);
         startActivityForResult(i, RESULT_OK);
     }
 

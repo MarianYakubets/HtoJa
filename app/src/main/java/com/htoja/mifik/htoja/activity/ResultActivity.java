@@ -61,7 +61,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void clickPlay(View view) {
-        Intent i = new Intent(this, GameActivity.class);
+        Intent i = new Intent(this, GameLandscapeActivity.class);
         if (TeamGameManager.getInstance().hasEnded()) {
             i = new Intent(this, MainActivity.class);
         }
