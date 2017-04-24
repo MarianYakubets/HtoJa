@@ -18,10 +18,8 @@ import android.widget.Toast;
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.adapter.CardAdapter;
 import com.htoja.mifik.htoja.control.TeamGameManager;
-import com.htoja.mifik.htoja.gyroscope.CalibratedGyroscopeProvider;
 import com.htoja.mifik.htoja.gyroscope.ImprovedOrientationSensor2Provider;
 import com.htoja.mifik.htoja.gyroscope.OrientationProvider;
-import com.htoja.mifik.htoja.gyroscope.RotationVectorProvider;
 import com.htoja.mifik.htoja.gyroscope.representation.Quaternion;
 import com.htoja.mifik.htoja.utils.Storage;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -37,10 +35,12 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
     public static final String CORRECT = "correct";
     public static final String SKIP = "skip";
     public static final String TEAM = "team";
-    private final static int START_COUNT = 10;
+    private final static int START_COUNT = 20;
 
 
     private CountDownTimer timer;
+    private Timer sensorTimer = new Timer();
+
     private ArrayList<String> correct = new ArrayList<>();
     private ArrayList<String> skip = new ArrayList<>();
     private int seconds;
@@ -52,6 +52,7 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
     private Quaternion quaternion = new Quaternion();
 
     private int counter = 0;
+    private Quaternion startQ = new Quaternion();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +76,6 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
         cardStackView.setCardStackEventListener(this);
 
         seconds = TeamGameManager.getInstance().getRoundTime();
-
-        startTimer();
-
         pauseBtn = (FloatingActionButton) findViewById(R.id.fab_pause);
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,44 +95,50 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
         });
 
         currentOrientationProvider = new ImprovedOrientationSensor2Provider((SensorManager) getSystemService(GameLandscapeActivity.SENSOR_SERVICE));
-        new Timer().scheduleAtFixedRate(new TimerTask() {
+        runSensorTimer();
+    }
+
+    private void runSensorTimer() {
+        sensorTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if (paused) {
+                            return;
+                        }
                         currentOrientationProvider.getQuaternion(quaternion);
 
-                        double[] angles = quaternion.toEulerAngles();
-                        double yaw = Math.toDegrees(angles[0]);
-                        double roll = Math.toDegrees(angles[1]);
-                        double pitch = Math.toDegrees(angles[2]);
-
                         if (counter >= START_COUNT) {
-
-
+                            Log.d("startQ", quaternion.toString());
                             return;
                         }
 
-                        if (80 < Math.abs(yaw) && Math.abs(yaw) < 100
-                                && (Math.abs(pitch) < 10
-                                || 170 < Math.abs(pitch))) {
-                            counter++;
-                            if (counter == START_COUNT) {
-                                Toast.makeText(getBaseContext(), "Стартували", Toast.LENGTH_SHORT).show();
-                                startTimer();
+                        double[] angles = quaternion.toEulerAngles();
+                        double yaw = Math.toDegrees(angles[0]);
+                        double pitch = Math.toDegrees(angles[2]);
+                        if (80 < Math.abs(yaw) && Math.abs(yaw) < 100) {
+                            if (Math.abs(pitch) < 10 || 170 < Math.abs(pitch)) {
+                                counter++;
+                                if (counter == START_COUNT) {
+                                    Toast.makeText(getBaseContext(), "Стартували", Toast.LENGTH_SHORT).show();
+                                    startTimer();
+                                    startQ.set(quaternion);
+                                }
                             }
                         }
                     }
                 });
             }
-        }, 0, 200);
+        }, 0, 100);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         currentOrientationProvider.start();
+        runSensorTimer();
     }
 
     @Override
@@ -144,6 +148,7 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
         pauseBtn.setImageResource(R.drawable.ic_media_play);
         timer.cancel();
         currentOrientationProvider.stop();
+        sensorTimer.cancel();
     }
 
     public void clickYes(int index) {
