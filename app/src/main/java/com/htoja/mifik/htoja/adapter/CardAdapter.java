@@ -13,9 +13,10 @@ import com.htoja.mifik.htoja.R;
  */
 
 public class CardAdapter extends ArrayAdapter<String> {
-
-    public CardAdapter(Context context) {
+    private  final int layout;
+    public CardAdapter(Context context, int layout) {
         super(context, 0);
+        this.layout = layout;
     }
 
     @Override
@@ -23,7 +24,7 @@ public class CardAdapter extends ArrayAdapter<String> {
         ViewHolder holder;
 
         if (contentView == null) {
-            contentView = View.inflate(getContext(), R.layout.item_card_stack, null);
+            contentView = View.inflate(getContext(), layout, null);
             holder = new ViewHolder(contentView);
             contentView.setTag(holder);
         } else {

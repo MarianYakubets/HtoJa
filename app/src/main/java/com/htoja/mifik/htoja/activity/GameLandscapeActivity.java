@@ -4,13 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.SensorManager;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +34,7 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
     public static final String CORRECT = "correct";
     public static final String SKIP = "skip";
     public static final String TEAM = "team";
-    private final static int START_COUNT = 20;
-
+    private final static int START_COUNT = 30;
 
     private CountDownTimer timer;
     private Timer sensorTimer = new Timer();
@@ -53,6 +51,9 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
 
     private int counter = 0;
     private Quaternion startQ = new Quaternion();
+    private boolean inUse = false;
+    private TextView timerView;
+    private TextView tvStartRound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +66,22 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        seconds = TeamGameManager.getInstance().getRoundTime();
 
-        cardAdapter = new CardAdapter(this);
+        cardAdapter = new CardAdapter(this, R.layout.item_card_stack_landscape);
         TeamGameManager.getInstance().nextWord();
         cardAdapter.addAll(TeamGameManager.getInstance().getLeftWords());
 
+        timerView = (TextView) findViewById(R.id.tvTimer);
+        tvStartRound = (TextView) findViewById(R.id.tv_start_round);
+        Date date = new Date(seconds * 1000);
+        seconds = date.getMinutes() * 60 + date.getSeconds();
+        timerView.setText(new SimpleDateFormat("mm:ss").format(date));
 
         cardStackView = (CardStackView) findViewById(R.id.csvWord);
         cardStackView.setAdapter(cardAdapter);
         cardStackView.setCardStackEventListener(this);
 
-        seconds = TeamGameManager.getInstance().getRoundTime();
         pauseBtn = (FloatingActionButton) findViewById(R.id.fab_pause);
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +95,10 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
                     pauseBtn.setImageResource(R.drawable.ic_media_play);
                     timer.cancel();
                 }
-
-                cardStackView.setSwipeEnabled(!paused);
             }
         });
 
         currentOrientationProvider = new ImprovedOrientationSensor2Provider((SensorManager) getSystemService(GameLandscapeActivity.SENSOR_SERVICE));
-        runSensorTimer();
     }
 
     private void runSensorTimer() {
@@ -108,10 +111,29 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
                         if (paused) {
                             return;
                         }
-                        currentOrientationProvider.getQuaternion(quaternion);
 
+                        currentOrientationProvider.getQuaternion(quaternion);
                         if (counter >= START_COUNT) {
-                            Log.d("startQ", quaternion.toString());
+                            double[] angles = quaternion.toEulerAngles();
+                            double yaw = Math.toDegrees(angles[0]);
+                            double roll = Math.toDegrees(angles[1]);
+                            double[] anglesStart = startQ.toEulerAngles();
+                            double startYaw = Math.toDegrees(anglesStart[0]);
+                            double startRoll = Math.toDegrees(anglesStart[1]);
+
+                            double diff = startYaw - yaw;
+                            double rollDiff = startRoll - roll;
+
+                            if (Math.abs(rollDiff) < 15 && !inUse && Math.abs(diff) > 50) {
+                                if (diff > 0) {
+                                    clickNo();
+                                } else {
+                                    clickYes();
+                                }
+                                inUse = true;
+                            } else if (Math.abs(diff) < 15) {
+                                inUse = false;
+                            }
                             return;
                         }
 
@@ -122,9 +144,10 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
                             if (Math.abs(pitch) < 10 || 170 < Math.abs(pitch)) {
                                 counter++;
                                 if (counter == START_COUNT) {
-                                    Toast.makeText(getBaseContext(), "Стартували", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), "Почали", Toast.LENGTH_SHORT).show();
                                     startTimer();
                                     startQ.set(quaternion);
+                                    tvStartRound.setVisibility(View.GONE);
                                 }
                             }
                         }
@@ -162,7 +185,6 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
     }
 
     private void startTimer() {
-        final TextView timerView = (TextView) findViewById(R.id.tvTimer);
         timer = new CountDownTimer(seconds * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
                 Date date = new Date(millisUntilFinished);
