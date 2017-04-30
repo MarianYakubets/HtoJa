@@ -34,7 +34,7 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
     public static final String CORRECT = "correct";
     public static final String SKIP = "skip";
     public static final String TEAM = "team";
-    private final static int START_COUNT = 30;
+    private final static int START_COUNT = 15;
 
     private CountDownTimer timer;
     private Timer sensorTimer;
@@ -176,6 +176,7 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
         timer.cancel();
         currentOrientationProvider.stop();
         sensorTimer.cancel();
+        onBackPressed();
     }
 
     public void clickYes(int index) {

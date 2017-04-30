@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.data.Vocabulary;
@@ -35,6 +36,7 @@ public class SetupCategoriesFragment extends Fragment {
 
     private LinkedList<String> colors = new LinkedList<>(Arrays.asList("#E57373", "#F44336", "#3F51B5", "#3F51B5",
             "#009688", "#009688", "#8BC34A", "#CDDC39", "#CDDC39", "#FFC107", "#FF9800", "#E65100", "#FF5722", "#607D8B"));
+    private TextView tvCategories;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +53,9 @@ public class SetupCategoriesFragment extends Fragment {
         }
         gridView = (GridView) getActivity().findViewById(R.id.grid);
         btn = (Button) getActivity().findViewById(R.id.btNext);
+        tvCategories = (TextView) getActivity().findViewById(R.id.tvCategories);
         updatePlayBtn();
+        tvCategories.setText(getActivity().getResources().getString(R.string.num_categories) + " " + adapter.selected.size());
 
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,6 +69,7 @@ public class SetupCategoriesFragment extends Fragment {
                 }
                 adapter.notifyDataSetChanged();
                 updatePlayBtn();
+                tvCategories.setText(getActivity().getResources().getString(R.string.num_categories) + " " + adapter.selected.size());
             }
         });
     }
@@ -75,7 +80,7 @@ public class SetupCategoriesFragment extends Fragment {
             btn.setVisibility(View.VISIBLE);
         } else {
             btn.setClickable(false);
-            btn.setVisibility(View.GONE);
+            btn.setVisibility(View.INVISIBLE);
         }
     }
 

@@ -6,7 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">WORD %1$d</string>
     <string name="_01_00">01:00</string>
-    <string name="round_start">Розмістіть екран горизонтально до команди</string>
+    <string name="round_start">Тримайте телефон горизонтально, екраном до команди</string>
     <string name="next">Далі</string>
     <string name="play">Грати</string>
     <string name="title_activity_teams">Teams</string>
@@ -101,4 +101,5 @@
     <string name="aim">Балів для перемоги:</string>
     <string name="winner">Переможець:</string>
     <string name="press_again">Натисніть ще раз, щоб вийти</string>
+    <string name="num_categories">Вибрано категорій: </string>
 </resources>
