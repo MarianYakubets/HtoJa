@@ -37,7 +37,7 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
     private final static int START_COUNT = 30;
 
     private CountDownTimer timer;
-    private Timer sensorTimer = new Timer();
+    private Timer sensorTimer;
 
     private ArrayList<String> correct = new ArrayList<>();
     private ArrayList<String> skip = new ArrayList<>();
@@ -86,6 +86,9 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (timer == null) {
+                    return;
+                }
                 if (paused) {
                     paused = false;
                     pauseBtn.setImageResource(R.drawable.ic_media_pause);
@@ -102,6 +105,7 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
     }
 
     private void runSensorTimer() {
+        sensorTimer = new Timer();
         sensorTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

@@ -7,6 +7,7 @@ public class TeamsSet {
     private boolean fine;
     private final List<String> categories;
     private final List<String> words;
+    private boolean seeScreen = true;
     private List<String> teams;
     private LinkedHashMap<String, Integer> teamResults;
 
@@ -16,7 +17,7 @@ public class TeamsSet {
     private String victorian;
 
     public TeamsSet(LinkedHashMap<String, Integer> teamResults, List<String> teams, int pointsToWin,
-                    int roundTime, boolean fine, List<String> categories, List<String> words) {
+                    int roundTime, boolean fine, List<String> categories, List<String> words, boolean seeScreen) {
         this.teamResults = teamResults;
         this.teams = teams;
         this.pointsToWin = pointsToWin;
@@ -24,6 +25,7 @@ public class TeamsSet {
         this.fine = fine;
         this.categories = categories;
         this.words = words;
+        this.seeScreen = seeScreen;
     }
 
     public int getPointsToWin() {
@@ -88,5 +90,13 @@ public class TeamsSet {
 
     public List<String> getWords() {
         return words;
+    }
+
+    public boolean isSeeScreen() {
+        return seeScreen;
+    }
+
+    public void setSeeScreen(boolean seeScreen) {
+        this.seeScreen = seeScreen;
     }
 }

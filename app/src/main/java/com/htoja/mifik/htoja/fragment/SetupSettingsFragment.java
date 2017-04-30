@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -19,8 +20,10 @@ public class SetupSettingsFragment extends Fragment {
     private TextView tvWords;
     private SeekBar sbWords;
     private TextView tvSeconds;
+    private TextView tvScreen;
     private SeekBar sbSeconds;
     private Switch swFine;
+    private Switch swScreen;
 
 
     @Override
@@ -47,6 +50,7 @@ public class SetupSettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         tvWords = (TextView) getActivity().findViewById(R.id.tvWords);
+        tvScreen = (TextView) getActivity().findViewById(R.id.tvSeeScreen);
         sbWords = (SeekBar) getActivity().findViewById(R.id.sbWords);
         sbWords.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -87,5 +91,20 @@ public class SetupSettingsFragment extends Fragment {
         });
 
         swFine = (Switch) getActivity().findViewById(R.id.swFine);
+        swScreen = (Switch) getActivity().findViewById(R.id.swSeeScreen);
+        swScreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked) {
+                    tvScreen.setText(getActivity().getResources().getString(R.string.seeScreen));
+                } else {
+                    tvScreen.setText(getActivity().getResources().getString(R.string.noSeeScreen));
+                }
+            }
+        });
+    }
+
+    public boolean getShowScreen() {
+        return swScreen.isChecked();
     }
 }

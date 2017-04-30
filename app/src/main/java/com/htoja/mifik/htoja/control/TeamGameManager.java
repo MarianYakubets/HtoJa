@@ -27,13 +27,13 @@ public class TeamGameManager {
     }
 
     public void startNewSet(List<String> teams, int targetWords, int seconds, boolean fine,
-                            List<String> categories, List<String> words) {
+                            List<String> categories, List<String> words, boolean seeScreen) {
         this.currentTeam = teams.get(0);
         LinkedHashMap<String, Integer> teamResults = new LinkedHashMap<>(teams.size());
         for (String team : teams) {
             teamResults.put(team, 0);
         }
-        this.currentSet = new TeamsSet(teamResults, teams, targetWords, seconds, fine, categories, words);
+        this.currentSet = new TeamsSet(teamResults, teams, targetWords, seconds, fine, categories, words, seeScreen);
         rounds = 1;
         wordPointer = 0;
     }
@@ -155,5 +155,9 @@ public class TeamGameManager {
 
     public int getPointer() {
         return this.wordPointer;
+    }
+
+    public boolean isSeeScreen() {
+        return this.currentSet.isSeeScreen();
     }
 }

@@ -127,6 +127,37 @@
 
         </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/divider"/>
+
+        <RelativeLayout
+            android:id="@+id/rlScreen"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/noSeeScreen"
+                android:textSize="@dimen/text_big"
+                android:textColor="@color/primary_text"
+                android:id="@+id/tvSeeScreen" />
+
+            <Switch
+                android:id="@+id/swSeeScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tvFineHeader"
+                android:layout_alignParentEnd="true"
+                android:checked="true"/>
+
+        </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"

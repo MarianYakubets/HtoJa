@@ -92,7 +92,10 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     public void clickPlay(View view) {
-        Intent i = new Intent(this, GameLandscapeActivity.class);
+        Intent i = new Intent(this, GameActivity.class);
+        if (!TeamGameManager.getInstance().isSeeScreen()) {
+            i = new Intent(this, GameLandscapeActivity.class);
+        }
         startActivityForResult(i, RESULT_OK);
     }
 
@@ -109,7 +112,7 @@ public class SetupActivity extends AppCompatActivity {
 
         TeamGameManager.getInstance().startNewSet(teams, setupSettingsFragment.getTargetWords(),
                 setupSettingsFragment.getSeconds(), setupSettingsFragment.getFine(),
-                setupCategoriesFragment.getCategories(), words);
+                setupCategoriesFragment.getCategories(), words, setupSettingsFragment.getShowScreen());
         TeamGameManager.getInstance().firstTeam();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, nextTeamFragment);

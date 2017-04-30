@@ -91,6 +91,8 @@
     <string name="number_words">Для перемоги</string>
     <string name="seconds_round">Час раунду</string>
     <string name="fine">Мінус за пропуск</string>
+    <string name="noSeeScreen">Відгадує команда</string>
+    <string name="seeScreen">Відгадує гравець</string>
     <string name="goon">Продовжити</string>
     <string name="new_game">Нова Гра</string>
     <string name="round_end">Кінець раунду: </string>
