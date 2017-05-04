@@ -3,6 +3,11 @@ package com.htoja.mifik.htoja.data;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
@@ -26,6 +31,7 @@ import java.util.regex.Pattern;
 
 public class Vocabulary {
     private static final Vocabulary ourInstance = new Vocabulary();
+    private static final String TAG = String.valueOf(Vocabulary.class);
     private Map<String, List<String>> categories;
 
     public static Vocabulary getInstance() {
@@ -61,6 +67,31 @@ public class Vocabulary {
         for (Category category : categories) {
             ourInstance.categories.put(category.getName(), category.getWords());
         }
+    }
+
+
+    public static void readFirebase(Context ctx) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("vocabulary");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+                    String name = (String) messageSnapshot.child("name").getValue();
+                    List<String> words = (List<String>) messageSnapshot.child("words").getValue();
+                    if (ourInstance.categories.containsKey(name) && words != null) {
+                        ourInstance.categories.put(name, words);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
     }
 
 
@@ -109,7 +140,6 @@ public class Vocabulary {
     public int getSizeOfCategory(String name) {
         return categories.get(name).size();
     }
-
 
     private class Category {
         @SerializedName("name")

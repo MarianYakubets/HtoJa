@@ -128,14 +128,14 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
                             double diff = startYaw - yaw;
                             double rollDiff = startRoll - roll;
 
-                            if (Math.abs(rollDiff) < 15 && !inUse && Math.abs(diff) > 50) {
+                            if (Math.abs(rollDiff) < 20 && !inUse && Math.abs(diff) > 50) {
                                 if (diff > 0) {
                                     clickNo();
                                 } else {
                                     clickYes();
                                 }
                                 inUse = true;
-                            } else if (Math.abs(diff) < 15) {
+                            } else if (Math.abs(diff) < 20) {
                                 inUse = false;
                             }
                             return;
@@ -144,8 +144,8 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
                         double[] angles = quaternion.toEulerAngles();
                         double yaw = Math.toDegrees(angles[0]);
                         double pitch = Math.toDegrees(angles[2]);
-                        if (80 < Math.abs(yaw) && Math.abs(yaw) < 100) {
-                            if (Math.abs(pitch) < 10 || 170 < Math.abs(pitch)) {
+                        if (70 < Math.abs(yaw) && Math.abs(yaw) < 110) {
+                            if (Math.abs(pitch) < 20 || 160 < Math.abs(pitch)) {
                                 counter++;
                                 if (counter == START_COUNT) {
                                     Toast.makeText(getBaseContext(), "Почали", Toast.LENGTH_SHORT).show();
@@ -173,7 +173,8 @@ public class GameLandscapeActivity extends AppCompatActivity implements CardStac
         super.onPause();
         paused = true;
         pauseBtn.setImageResource(R.drawable.ic_media_play);
-        timer.cancel();
+        if (timer != null)
+            timer.cancel();
         currentOrientationProvider.stop();
         sensorTimer.cancel();
         onBackPressed();
