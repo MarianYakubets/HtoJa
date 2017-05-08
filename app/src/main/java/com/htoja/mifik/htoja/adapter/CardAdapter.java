@@ -31,7 +31,7 @@ public class CardAdapter extends ArrayAdapter<String> {
             holder = (ViewHolder) contentView.getTag();
         }
 
-        holder.textView.setText(getItem(position));
+        holder.textView.setText(getItem(position).toUpperCase());
 
         return contentView;
     }

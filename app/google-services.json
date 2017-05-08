@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "480870677339",
-    "firebase_url": "https://htoja-50f80.firebaseio.com",
-    "project_id": "htoja-50f80",
-    "storage_bucket": "htoja-50f80.appspot.com"
+    "project_number": "924714857888",
+    "firebase_url": "https://htoja-8194b.firebaseio.com",
+    "project_id": "htoja-8194b",
+    "storage_bucket": "htoja-8194b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:480870677339:android:b61fae16a99e1c40",
+        "mobilesdk_app_id": "1:924714857888:android:b61fae16a99e1c40",
         "android_client_info": {
           "package_name": "com.htoja.mifik.htoja"
         }
       },
       "oauth_client": [
         {
-          "client_id": "480870677339-3h27ps80fivuf5m1sb0d4ult8rlq73ag.apps.googleusercontent.com",
+          "client_id": "924714857888-pf7f8cp24tro4i9uufe3e15oc7l7ia1i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAIDlrpFDEMeozbFf1WPqRfjpLNXibsmio"
+          "current_key": "AIzaSyAemTlnIf6HI4CB7W7mLfq-ZUShHWhkx20"
         }
       ],
       "services": {

@@ -70,7 +70,7 @@ public class Vocabulary {
     }
 
 
-    public static void readFirebase(Context ctx) {
+    public static void readFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("vocabulary");
         myRef.addValueEventListener(new ValueEventListener() {
