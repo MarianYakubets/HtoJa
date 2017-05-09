@@ -22,6 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/card"
-        android:layout_margin="30dp"/>
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/text_medium"
+            android:text="@string/rules_text"/>
+    </LinearLayout>
 
 </LinearLayout>
