@@ -34,14 +34,12 @@
             android:noHistory="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".activity.GameLandscapeActivity"
             android:label="@string/title_menu"
             android:noHistory="false"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ResultActivity"
             android:screenOrientation="portrait"
@@ -50,7 +48,10 @@
             android:name=".activity.SetupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity
+            android:name=".activity.RulesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

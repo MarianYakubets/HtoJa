@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.control.TeamGameManager;
 import com.htoja.mifik.htoja.data.Vocabulary;
-import com.htoja.mifik.htoja.utils.Storage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,5 +91,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void startRules(View view) {
+        Intent i = new Intent(getApplicationContext(), RulesActivity.class);
+        startActivity(i);
     }
 }

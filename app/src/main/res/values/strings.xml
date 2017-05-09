@@ -102,4 +102,5 @@
     <string name="winner">Переможець:</string>
     <string name="press_again">Натисніть ще раз, щоб вийти</string>
     <string name="num_categories">Вибрано категорій: </string>
+    <string name="rules">Правила</string>
 </resources>
