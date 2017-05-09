@@ -18,16 +18,20 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/card"
-        android:layout_margin="10dp">
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginLeft="7dp"
+        >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="@dimen/text_medium"
+            android:textSize="@dimen/text_small"
+            android:padding="15dp"
             android:text="@string/rules_text"/>
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
