@@ -21,17 +21,32 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/card"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="7dp"
         android:layout_marginLeft="7dp"
-        >
-        <TextView
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/card">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="@dimen/text_small"
-            android:padding="15dp"
-            android:text="@string/rules_text"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:gravity="fill"
+                android:breakStrategy="simple"
+                android:text="@string/rules_text"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_small" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nexus_rotate" />
+        </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>
