@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.session.MediaController;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Messenger;
@@ -11,9 +12,11 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.android.vending.expansion.zipfile.ZipResourceFile;
 import com.google.android.vending.expansion.downloader.Constants;
@@ -28,7 +31,12 @@ import com.htoja.mifik.htoja.R;
 import com.htoja.mifik.htoja.expansion.DownloaderServiceImpl;
 
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.zip.CRC32;
 
 public class Main2Activity extends Activity implements IDownloaderClient {
@@ -97,15 +105,9 @@ public class Main2Activity extends Activity implements IDownloaderClient {
     private static final XAPKFile[] xAPKS = {
             new XAPKFile(
                     true, // true signifies a main file
-                    3, // the version of the APK that the file was uploaded
+                    2, // the version of the APK that the file was uploaded
                     // against
-                    687801613L // the length of the file in bytes
-            ),
-            new XAPKFile(
-                    false, // false signifies a patch file
-                    4, // the version of the APK that the patch file was uploaded
-                    // against
-                    512860L // the length of the patch file in bytes
+                    129613122L // the length of the file in bytes
             )
     };
 
@@ -278,7 +280,30 @@ public class Main2Activity extends Activity implements IDownloaderClient {
                     mPauseButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            finish();
+                            XAPKFile xf = xAPKS[0];
+                            String fileName = Helpers.getExpansionAPKFileName(
+                                    Main2Activity.this,
+                                    xf.mIsMain, xf.mFileVersion);
+                            fileName = Helpers
+                                    .generateSaveFileName(Main2Activity.this, fileName);
+                            ZipResourceFile zrf;
+                            byte[] buf = new byte[1024 * 256];
+                            try {
+                                zrf = new ZipResourceFile(fileName);
+                                InputStream fileStream =  zrf.getInputStream("Photos/1.mp4");
+
+
+
+                                VideoView vv =(VideoView) findViewById(R.id.vvMain);
+                                vv.setVideoPath(getDataSource(fileStream));
+
+                                vv.requestFocus(0);
+                                vv.start();
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            //finish();
                         }
                     });
                     mPauseButton.setText(android.R.string.ok);
@@ -300,6 +325,30 @@ public class Main2Activity extends Activity implements IDownloaderClient {
         };
         validationTask.execute(new Object());
     }
+
+    public static String getDataSource(InputStream inputStream) throws IOException {
+            InputStream stream = inputStream;
+            if (stream == null)
+                throw new RuntimeException("stream is null");
+            File temp = File.createTempFile("mediaplayertmp", "dat");
+            temp.deleteOnExit();
+            String tempPath = temp.getAbsolutePath();
+            FileOutputStream out = new FileOutputStream(temp);
+            byte buf[] = new byte[128];
+            do {
+                int numread = stream.read(buf);
+                if (numread <= 0)
+                    break;
+                out.write(buf, 0, numread);
+            } while (true);
+            try {
+                stream.close();
+                out.close();
+            } catch (IOException ex) {
+                //  Log.e(TAG, "error: " + ex.getMessage(), ex);
+            }
+            return tempPath;
+        }
 
     /**
      * If the download isn't present, we initialize the download UI. This ties
