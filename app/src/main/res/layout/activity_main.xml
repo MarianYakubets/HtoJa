@@ -55,4 +55,20 @@
         android:enabled="true"
         android:layout_below="@+id/btMultiple"
         android:layout_alignStart="@+id/btMultiple" />
+
+
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/accent"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:text="LOAD"
+        android:textSize="@dimen/text_medium"
+        android:id="@+id/btLoad"
+        android:onClick="startLoad"
+        android:enabled="true"
+        android:layout_below="@+id/btRules"
+        android:layout_alignStart="@+id/btMultiple" />
 </RelativeLayout>

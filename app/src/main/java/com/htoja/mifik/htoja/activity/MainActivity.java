@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         Vocabulary.readJson(this);
         Vocabulary.readFirebase();
-        Vocabulary.readRawData();
+        //Vocabulary.readRawData();
     }
 
     @Override
@@ -95,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void startRules(View view) {
         Intent i = new Intent(getApplicationContext(), RulesActivity.class);
+        startActivity(i);
+    }
+
+    public void startLoad(View view) {
+        Intent i = new Intent(getApplicationContext(), Main2Activity.class);
         startActivity(i);
     }
 }
