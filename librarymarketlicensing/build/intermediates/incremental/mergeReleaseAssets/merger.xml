@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\own\HtoJa\librarymarketlicensing\src\main\assets"/><source path="C:\own\HtoJa\librarymarketlicensing\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="C:\own\HtoJa\librarymarketlicensing\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/marian/Desktop/Dev/HtoJa/librarymarketlicensing/src/main/assets"/><source path="/Users/marian/Desktop/Dev/HtoJa/librarymarketlicensing/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/marian/Desktop/Dev/HtoJa/librarymarketlicensing/src/release/assets"/></dataSet></merger>

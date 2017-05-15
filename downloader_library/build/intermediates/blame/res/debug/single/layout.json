@@ -1,6 +1,10 @@
 [
     {
-        "merged": "C:\\own\\HtoJa\\downloader_library\\build\\intermediates\\res\\merged\\debug\\layout\\status_bar_ongoing_event_progress_bar.xml",
-        "source": "C:\\own\\HtoJa\\downloader_library\\src\\main\\res\\layout\\status_bar_ongoing_event_progress_bar.xml"
+        "merged": "/Users/marian/Desktop/Dev/HtoJa/downloader_library/build/intermediates/res/merged/debug/layout/status_bar_ongoing_event_progress_bar.xml",
+        "source": "/Users/marian/Desktop/Dev/HtoJa/downloader_library/src/main/res/layout/status_bar_ongoing_event_progress_bar.xml"
+    },
+    {
+        "merged": "/Users/marian/Desktop/Dev/HtoJa/C:\\own\\HtoJa\\downloader_library\\build\\intermediates\\res\\merged\\debug\\layout\\status_bar_ongoing_event_progress_bar.xml",
+        "source": "/Users/marian/Desktop/Dev/HtoJa/C:\\own\\HtoJa\\downloader_library\\src\\main\\res\\layout\\status_bar_ongoing_event_progress_bar.xml"
     }
 ]

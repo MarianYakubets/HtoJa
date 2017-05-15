@@ -5,7 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/HtoJa.iml" filepath="$PROJECT_DIR$/HtoJa.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/downloader_library/downloader_library.iml" filepath="$PROJECT_DIR$/downloader_library/downloader_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/downloader_library/downloader_library.iml" filepath="$PROJECT_DIR$/downloader_library/downloader_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/librarymarketlicensing/librarymarketlicensing.iml" filepath="$PROJECT_DIR$/librarymarketlicensing/librarymarketlicensing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/librarymarketlicensing/librarymarketlicensing.iml" filepath="$PROJECT_DIR$/librarymarketlicensing/librarymarketlicensing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zip_file/zip_file.iml" filepath="$PROJECT_DIR$/zip_file/zip_file.iml" />
       <module fileurl="file://$PROJECT_DIR$/zip_file/zip_file.iml" filepath="$PROJECT_DIR$/zip_file/zip_file.iml" />
     </modules>
   </component>
