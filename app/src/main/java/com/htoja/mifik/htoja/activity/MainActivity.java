@@ -97,9 +97,4 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), RulesActivity.class);
         startActivity(i);
     }
-
-    public void startLoad(View view) {
-        Intent i = new Intent(getApplicationContext(), Main2Activity.class);
-        startActivity(i);
-    }
 }
