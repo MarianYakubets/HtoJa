@@ -67,9 +67,6 @@
             android:name=".activity.RulesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <service android:name=".expansion.DownloaderServiceImpl" />
-        <receiver android:name=".expansion.DownloaderServiceBroadcastReceiver" />
     </application>
 
 </manifest>

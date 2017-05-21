@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/Users/marian/Desktop/Dev/HtoJa/C:\\own\\HtoJa\\downloader_library\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png",
-        "source": "/Users/marian/Desktop/Dev/HtoJa/C:\\own\\HtoJa\\downloader_library\\src\\main\\res\\drawable-hdpi\\notify_panel_notification_icon_bg.png"
-    },
-    {
         "merged": "/Users/marian/Desktop/Dev/HtoJa/downloader_library/build/intermediates/res/merged/debug/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
         "source": "/Users/marian/Desktop/Dev/HtoJa/downloader_library/src/main/res/drawable-hdpi/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/marian/Desktop/Dev/HtoJa/C:\\own\\HtoJa\\downloader_library\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png",
+        "source": "/Users/marian/Desktop/Dev/HtoJa/C:\\own\\HtoJa\\downloader_library\\src\\main\\res\\drawable-hdpi\\notify_panel_notification_icon_bg.png"
     }
 ]
